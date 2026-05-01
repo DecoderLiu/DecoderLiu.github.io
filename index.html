@@ -4,111 +4,537 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Langchen Liu</title>
-  <meta name="description" content="Personal website of Langchen Liu.">
+  <meta name="description" content="Langchen Liu is a PhD student in Statistics &amp; Data Science at Yale University working on foundation models, LLMs, federated learning, PDE discovery, and scientific machine learning.">
+  <meta property="og:title" content="Langchen Liu">
+  <meta property="og:description" content="PhD student in Statistics &amp; Data Science at Yale University.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://decoderliu.github.io/">
+  <meta property="og:image" content="https://decoderliu.github.io/assets/langchen-liu.jpg">
   <style>
     :root {
-      color-scheme: light dark;
-      --bg: #f8f7f3;
-      --text: #1f2933;
-      --muted: #5d6673;
-      --accent: #1f6feb;
-      --border: #d8d5cc;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #101418;
-        --text: #eef2f6;
-        --muted: #a8b3c0;
-        --accent: #7db7ff;
-        --border: #2a333d;
-      }
+      color-scheme: light;
+      --ink: #14171f;
+      --muted: #59616f;
+      --quiet: #eef0f4;
+      --paper: #fbfaf7;
+      --panel: rgba(255, 255, 255, 0.78);
+      --line: rgba(20, 23, 31, 0.13);
+      --blue: #2457c5;
+      --teal: #007f78;
+      --plum: #7047a8;
+      --amber: #9b6215;
+      --shadow: 0 24px 70px rgba(22, 30, 45, 0.15);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      background: var(--bg);
-      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(36, 87, 197, 0.11), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(0, 127, 120, 0.12), transparent 25%),
+        linear-gradient(135deg, #fbfaf7 0%, #f2f5f8 48%, #f9f6ef 100%);
     }
 
-    main {
-      width: min(760px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 96px 0 64px;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.25rem, 6vw, 4.5rem);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-
-    .role {
-      margin: 0 0 40px;
-      color: var(--muted);
-      font-size: 1.2rem;
-    }
-
-    section {
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-
-    p {
-      margin: 0 0 16px;
-      font-size: 1.05rem;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 18px;
-      padding: 0;
-      margin: 28px 0 0;
-      list-style: none;
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      opacity: 0.42;
+      background-image:
+        linear-gradient(rgba(20, 23, 31, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 23, 31, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 92%);
     }
 
     a {
-      color: var(--accent);
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.18em;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--blue);
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(20, 23, 31, 0.08);
+      backdrop-filter: blur(18px);
+      background: rgba(251, 250, 247, 0.78);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      gap: 24px;
+    }
+
+    .mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+    }
+
+    .mark span:first-child {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--blue);
+      box-shadow: 0 10px 24px rgba(22, 30, 45, 0.08);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.72fr);
+      align-items: center;
+      gap: 56px;
+      min-height: calc(100vh - 70px);
+      padding: 64px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 760;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    h1 {
+      max-width: 840px;
+      margin: 0;
+      font-size: clamp(3.4rem, 8.4vw, 7.8rem);
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 680px;
+      margin: 28px 0 0;
+      color: #303847;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.55;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 34px 0 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      font-weight: 720;
+      box-shadow: 0 10px 28px rgba(22, 30, 45, 0.08);
+    }
+
+    .button.primary {
+      border-color: #173c92;
+      background: #173c92;
+      color: #ffffff;
+    }
+
+    .portrait-panel {
+      position: relative;
+      justify-self: end;
+      width: min(100%, 390px);
+    }
+
+    .portrait-card {
+      overflow: hidden;
+      border: 1px solid rgba(20, 23, 31, 0.18);
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+      transform: rotate(1.25deg);
+    }
+
+    .portrait-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: 50% 18%;
+      filter: saturate(0.9) contrast(1.04);
+    }
+
+    .caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .status-card {
+      position: absolute;
+      right: -26px;
+      bottom: 42px;
+      width: 210px;
+      padding: 16px;
+      border: 1px solid rgba(20, 23, 31, 0.16);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 42px rgba(22, 30, 45, 0.16);
+    }
+
+    .status-card strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .status-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 84px 0;
+      border-top: 1px solid rgba(20, 23, 31, 0.1);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.42fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-head p {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+      line-height: 1.18;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 180px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 34px rgba(22, 30, 45, 0.07);
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 1.02rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .event:first-child {
+      border-top: 0;
+    }
+
+    .date {
+      color: var(--amber);
+      font-size: 0.9rem;
+      font-weight: 760;
+    }
+
+    .event h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+    }
+
+    .event p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-link {
+      min-height: 96px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 10px 30px rgba(22, 30, 45, 0.06);
+    }
+
+    .contact-link span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    footer {
+      padding: 34px 0 52px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        min-height: 62px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .section-head,
+      .event,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 36px;
+        padding-top: 42px;
+      }
+
+      .portrait-panel {
+        justify-self: start;
+        width: min(100%, 340px);
+      }
+
+      .status-card {
+        position: static;
+        width: auto;
+        margin-top: 12px;
+      }
+
+      .portrait-card {
+        transform: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Langchen Liu</h1>
-    <p class="role">PhD student in Statistics & Data Science at Yale University</p>
+  <header>
+    <div class="shell nav">
+      <a class="mark" href="#top" aria-label="Langchen Liu home">
+        <span>LL</span>
+        <span>Langchen Liu</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#research">Research</a>
+        <a href="#path">Path</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section aria-labelledby="about">
-      <h2 id="about">About</h2>
-      <p>
-        I work on machine learning for scientific problems, including foundation models,
-        large language models, federated learning, and scientific machine learning.
-      </p>
-      <ul aria-label="Links">
-        <li><a href="mailto:langchen.liu@yale.edu">Email</a></li>
-        <li><a href="https://github.com/DecoderLiu">GitHub</a></li>
-        <li><a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ">Google Scholar</a></li>
-        <li><a href="https://twitter.com/LangchenLiu">X / Twitter</a></li>
-      </ul>
+  <main id="top">
+    <div class="shell hero">
+      <div>
+        <p class="eyebrow">Yale Statistics &amp; Data Science</p>
+        <h1>Learning machines for scientific structure.</h1>
+        <p class="lede">
+          I am Langchen Liu, a PhD student at Yale working across foundation models,
+          large language models, federated learning, PDE discovery, and scientific
+          machine learning.
+        </p>
+        <div class="actions" aria-label="Primary links">
+          <a class="button primary" href="mailto:langchen.liu@yale.edu">Contact</a>
+          <a class="button" href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ">Scholar</a>
+          <a class="button" href="https://github.com/DecoderLiu">GitHub</a>
+        </div>
+      </div>
+
+      <aside class="portrait-panel" aria-label="Profile summary">
+        <div class="portrait-card">
+          <img src="assets/langchen-liu.jpg" alt="Langchen Liu">
+          <div class="caption">
+            <span>DecoderLiu</span>
+            <span>New Haven</span>
+          </div>
+        </div>
+        <div class="status-card">
+          <strong>Current focus</strong>
+          <span>Building research systems that connect modern AI with scientific discovery.</span>
+        </div>
+      </aside>
+    </div>
+
+    <section id="research">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Research</h2>
+          <p>My work sits where statistical learning, scientific computing, and agentic AI systems start to overlap.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Foundation Models</h3>
+            <p>Model architectures and training workflows for scientific data, simulation, and reasoning-heavy domains.</p>
+          </article>
+          <article class="card">
+            <h3>Scientific Machine Learning</h3>
+            <p>Learning useful structure from differential equations, physical systems, and computational science tasks.</p>
+          </article>
+          <article class="card">
+            <h3>Federated Learning</h3>
+            <p>Distributed learning methods for settings where data movement, privacy, or institution boundaries matter.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="path">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Path</h2>
+          <p>A compact academic path from applied mathematics into statistics, machine learning, and scientific AI.</p>
+        </div>
+        <div class="timeline">
+          <article class="event">
+            <div class="date">2023 - present</div>
+            <div>
+              <h3>PhD student, Statistics &amp; Data Science</h3>
+              <p>Yale University, New Haven. Advisor: Lu Lu.</p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="date">2022 - 2023</div>
+            <div>
+              <h3>PhD student, Applied Mathematics and Computational Science</h3>
+              <p>University of Pennsylvania, Philadelphia. Advisor: Lu Lu.</p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="date">2018 - 2022</div>
+            <div>
+              <h3>BSc, Applied Mathematics</h3>
+              <p>Duke University and Duke Kunshan University.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>The fastest path is email. I also keep research and code links current on public profiles.</p>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-link" href="mailto:langchen.liu@yale.edu">
+            <span>Email</span>
+            langchen.liu@yale.edu
+          </a>
+          <a class="contact-link" href="https://github.com/DecoderLiu">
+            <span>Code</span>
+            GitHub
+          </a>
+          <a class="contact-link" href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ">
+            <span>Research</span>
+            Google Scholar
+          </a>
+          <a class="contact-link" href="https://twitter.com/LangchenLiu">
+            <span>Social</span>
+            X / Twitter
+          </a>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer>
+    <div class="shell">© 2026 Langchen Liu. Built with static HTML and GitHub Pages.</div>
+  </footer>
 </body>
 </html>
