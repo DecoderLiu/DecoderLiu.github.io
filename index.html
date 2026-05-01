@@ -39,10 +39,7 @@
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 18% 12%, rgba(36, 87, 197, 0.11), transparent 28%),
-        radial-gradient(circle at 84% 18%, rgba(0, 127, 120, 0.12), transparent 25%),
-        linear-gradient(135deg, #fbfaf7 0%, #f2f5f8 48%, #f9f6ef 100%);
+      background: linear-gradient(180deg, #fbfaf7 0%, #f4f6f8 100%);
     }
 
     body::before {
@@ -121,8 +118,8 @@
       grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.72fr);
       align-items: center;
       gap: 56px;
-      min-height: calc(100vh - 70px);
-      padding: 64px 0 72px;
+      min-height: 620px;
+      padding: 56px 0 64px;
     }
 
     .eyebrow {
@@ -147,17 +144,17 @@
     h1 {
       max-width: 840px;
       margin: 0;
-      font-size: clamp(3.4rem, 8.4vw, 7.8rem);
-      line-height: 0.9;
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      line-height: 1;
       letter-spacing: 0;
     }
 
     .lede {
-      max-width: 680px;
-      margin: 28px 0 0;
+      max-width: 720px;
+      margin: 24px 0 0;
       color: #303847;
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
-      line-height: 1.55;
+      font-size: clamp(1.06rem, 1.8vw, 1.28rem);
+      line-height: 1.62;
     }
 
     .actions {
@@ -185,6 +182,11 @@
       border-color: #173c92;
       background: #173c92;
       color: #ffffff;
+    }
+
+    .text-link {
+      color: var(--blue);
+      font-weight: 720;
     }
 
     .portrait-panel {
@@ -489,11 +491,12 @@
     <div class="shell hero">
       <div>
         <p class="eyebrow">Yale Statistics &amp; Data Science</p>
-        <h1>Symbolic PDE discovery with foundation models.</h1>
+        <h1>Langchen Liu</h1>
         <p class="lede">
-          I am Langchen Liu, a PhD student at Yale studying how foundation-model
-          and agentic AI methods can discover symbolic partial differential equations
-          from spatiotemporal data.
+          I am a PhD student in Statistics &amp; Data Science at Yale University.
+          My research is in scientific machine learning, with a current focus on
+          PDE discovery, foundation models for science, and agentic systems for
+          scientific reasoning.
         </p>
         <div class="actions" aria-label="Primary links">
           <a class="button primary" href="mailto:langchen.liu@yale.edu">Email</a>
@@ -512,8 +515,8 @@
           </div>
         </div>
         <div class="status-card">
-          <strong>Current focus</strong>
-          <span>From FoundPDE to PDEScientist: generative symbolic discovery, tool feedback, and scientific validation.</span>
+          <strong>Research focus</strong>
+          <span>Scientific machine learning, PDE discovery, and AI systems for scientific reasoning.</span>
         </div>
       </aside>
     </div>
@@ -644,23 +647,23 @@
       <div class="shell">
         <div class="section-head">
           <h2>Blog</h2>
-          <p>A home for research notes, paper-reading notes, and technical explanations. The first posts will be short, figure-grounded notes rather than polished essays.</p>
+          <p>Research notes, paper-reading notes, and technical explanations. Posts live as simple static pages in the repository.</p>
         </div>
         <div class="grid">
           <article class="card">
-            <span class="meta">Research note</span>
-            <h3>Why Symbolic Correctness and Trajectory Accuracy Can Diverge</h3>
-            <p>A planned note on FoundPDE cases where a recovered PDE produces a plausible trajectory while still missing part of the symbolic structure.</p>
+            <span class="meta">Blog index</span>
+            <h3><a class="text-link" href="blog/">All posts</a></h3>
+            <p>The blog landing page lists every post. This is the page to update whenever a new post is added.</p>
           </article>
           <article class="card">
             <span class="meta">Technical note</span>
-            <h3>Evaluator-Owned Targets in PDE Discovery</h3>
-            <p>A planned explanation of why an agent should not define its own residual, and why PDE evaluators should own target derivatives and feature construction.</p>
+            <h3><a class="text-link" href="blog/evaluator-owned-targets/">Evaluator-Owned Targets in PDE Discovery</a></h3>
+            <p>A first short post explaining why an agent should not define its own residual in PDE discovery.</p>
           </article>
           <article class="card">
-            <span class="meta">Reading note</span>
-            <h3>From FoundPDE to PDEScientist</h3>
-            <p>A planned overview of the dissertation arc: direct generative symbolic discovery first, then iterative proposal, validation, and refinement.</p>
+            <span class="meta">Writing guide</span>
+            <h3><a class="text-link" href="blog/how-to-write/">How to add a post</a></h3>
+            <p>Write a Markdown file in the repository's <code>_posts</code> folder. GitHub Pages turns it into a webpage automatically.</p>
           </article>
         </div>
       </div>

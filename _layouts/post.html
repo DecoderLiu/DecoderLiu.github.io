@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | Langchen Liu</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #14171f;
+      --muted: #59616f;
+      --line: rgba(20, 23, 31, 0.13);
+      --blue: #2457c5;
+      --amber: #9b6215;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fbfaf7;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 720;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      width: min(820px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(20, 23, 31, 0.08);
+      background: rgba(251, 250, 247, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 70px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .mark {
+      color: var(--ink);
+      font-weight: 760;
+    }
+
+    main {
+      padding: 72px 0 96px;
+    }
+
+    .meta {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--amber);
+      font-size: 0.8rem;
+      font-weight: 760;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.04;
+    }
+
+    .dek {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #303847;
+      font-size: 1.16rem;
+      line-height: 1.65;
+    }
+
+    article {
+      margin-top: 56px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 1.35rem;
+    }
+
+    p,
+    li {
+      color: #303847;
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    ul {
+      margin: 0 0 22px;
+      padding-left: 22px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #eef0f4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .back {
+      margin-top: 48px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="mark" href="{{ "/" | relative_url }}">Langchen Liu</a>
+      <a href="{{ "/blog/" | relative_url }}">Blog</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <span class="meta">{{ page.category_label | default: "Note" }} · {{ page.date | date: "%B %Y" }}</span>
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="dek">{{ page.description }}</p>
+      {% endif %}
+
+      <article>
+        {{ content }}
+      </article>
+
+      <p class="back"><a href="{{ "/blog/" | relative_url }}">Back to all posts</a></p>
+    </div>
+  </main>
+</body>
+</html>
