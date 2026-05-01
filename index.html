@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Langchen Liu</title>
-  <meta name="description" content="Langchen Liu is a PhD student in Statistics &amp; Data Science at Yale University working on foundation models, LLMs, federated learning, PDE discovery, and scientific machine learning.">
+  <meta name="description" content="Langchen Liu is a PhD student in Statistics &amp; Data Science at Yale University working on symbolic PDE discovery, foundation models for science, and agentic scientific-discovery systems.">
   <meta property="og:title" content="Langchen Liu">
   <meta property="og:description" content="PhD student in Statistics &amp; Data Science at Yale University.">
   <meta property="og:type" content="website">
@@ -298,6 +298,38 @@
       font-size: 0.98rem;
     }
 
+    .card .meta,
+    .publication .meta,
+    .blog-card .meta {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--amber);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 0 10px;
+      border: 1px solid rgba(20, 23, 31, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 680;
+    }
+
     .timeline {
       display: grid;
       gap: 12px;
@@ -329,6 +361,37 @@
     .event p {
       margin: 0;
       color: var(--muted);
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 0.32fr 1fr;
+      gap: 24px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 10px 34px rgba(22, 30, 45, 0.06);
+    }
+
+    .publication h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .publication p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .publication a {
+      color: var(--blue);
+      font-weight: 720;
     }
 
     .contact-grid {
@@ -373,6 +436,7 @@
       .hero,
       .section-head,
       .event,
+      .publication,
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -412,6 +476,9 @@
       </a>
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#blog">Blog</a>
         <a href="#path">Path</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -422,11 +489,11 @@
     <div class="shell hero">
       <div>
         <p class="eyebrow">Yale Statistics &amp; Data Science</p>
-        <h1>Learning machines for scientific structure.</h1>
+        <h1>Symbolic PDE discovery with foundation models.</h1>
         <p class="lede">
-          I am Langchen Liu, a PhD student at Yale working across foundation models,
-          large language models, federated learning, PDE discovery, and scientific
-          machine learning.
+          I am Langchen Liu, a PhD student at Yale studying how foundation-model
+          and agentic AI methods can discover symbolic partial differential equations
+          from spatiotemporal data.
         </p>
         <div class="actions" aria-label="Primary links">
           <a class="button primary" href="mailto:langchen.liu@yale.edu">Email</a>
@@ -446,7 +513,7 @@
         </div>
         <div class="status-card">
           <strong>Current focus</strong>
-          <span>Building research systems that connect modern AI with scientific discovery.</span>
+          <span>From FoundPDE to PDEScientist: generative symbolic discovery, tool feedback, and scientific validation.</span>
         </div>
       </aside>
     </div>
@@ -455,20 +522,145 @@
       <div class="shell">
         <div class="section-head">
           <h2>Research</h2>
-          <p>My work sits where statistical learning, scientific computing, and agentic AI systems start to overlap.</p>
+          <p>My current work is organized around symbolic PDE discovery with foundation models and agentic scientific-discovery systems.</p>
         </div>
         <div class="grid">
           <article class="card">
-            <h3>Foundation Models</h3>
-            <p>Model architectures and training workflows for scientific data, simulation, and reasoning-heavy domains.</p>
+            <span class="meta">Problem</span>
+            <h3>Symbolic PDE Discovery</h3>
+            <p>Recovering interpretable governing equations from numerical solution fields, especially when data are sparse or noisy.</p>
+            <div class="tag-row">
+              <span class="tag">PDEs</span>
+              <span class="tag">symbolic structure</span>
+              <span class="tag">spatiotemporal data</span>
+            </div>
           </article>
           <article class="card">
-            <h3>Scientific Machine Learning</h3>
-            <p>Learning useful structure from differential equations, physical systems, and computational science tasks.</p>
+            <span class="meta">Method</span>
+            <h3>Foundation Models for Science</h3>
+            <p>Training reusable models across PDE families so symbolic discovery becomes a learned data-to-sequence problem.</p>
+            <div class="tag-row">
+              <span class="tag">FoundPDE</span>
+              <span class="tag">transformers</span>
+              <span class="tag">pretraining</span>
+            </div>
           </article>
           <article class="card">
-            <h3>Federated Learning</h3>
-            <p>Distributed learning methods for settings where data movement, privacy, or institution boundaries matter.</p>
+            <span class="meta">Next stage</span>
+            <h3>Agentic Scientific Discovery</h3>
+            <p>Designing systems that propose equations, call evaluators, fit coefficients, inspect feedback, and revise hypotheses.</p>
+            <div class="tag-row">
+              <span class="tag">PDEScientist</span>
+              <span class="tag">tool use</span>
+              <span class="tag">validation loops</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Current projects form a path from one-shot symbolic prediction toward iterative scientific-discovery systems.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="meta">Current manuscript</span>
+            <h3>FoundPDE</h3>
+            <p>A generative foundation model for data-driven symbolic discovery of one-dimensional time-dependent PDEs. The model maps discretized solution trajectories to symbolic PDE expressions, then refines coefficients with BFGS.</p>
+            <div class="tag-row">
+              <span class="tag">data-to-symbol</span>
+              <span class="tag">Fourier features</span>
+              <span class="tag">coefficient refinement</span>
+            </div>
+          </article>
+          <article class="card">
+            <span class="meta">Dissertation direction</span>
+            <h3>PDEScientist</h3>
+            <p>An agentic PDE-discovery system where a model proposes candidate equations, analyzes data, calls evaluator tools, fits coefficients, and refines symbolic hypotheses over multiple turns.</p>
+            <div class="tag-row">
+              <span class="tag">agentic AI</span>
+              <span class="tag">PDE evaluator</span>
+              <span class="tag">hypothesis refinement</span>
+            </div>
+          </article>
+          <article class="card">
+            <span class="meta">Research infrastructure</span>
+            <h3>PDE Evaluation Loops</h3>
+            <p>Benchmark and evaluator design for PDE discovery from raw solution data, including evaluator-owned targets, controlled feature namespaces, residual scoring, coefficient fitting, and trace-based failure analysis.</p>
+            <div class="tag-row">
+              <span class="tag">benchmarks</span>
+              <span class="tag">residual NMSE</span>
+              <span class="tag">rollout checks</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p>Selected publications, manuscripts, and research documents. The newest work is centered on symbolic PDE discovery.</p>
+        </div>
+        <div class="publication-list">
+          <article class="publication">
+            <div>
+              <span class="meta">Manuscript</span>
+            </div>
+            <div>
+              <h3>FoundPDE: A generative foundation model for data-driven symbolic discovery of partial differential equations</h3>
+              <p>Current manuscript on transformer-based data-to-symbol PDE discovery from spatiotemporal solution data, with coefficient refinement, sparse-data evaluation, few-shot adaptation, and step-by-step compositional discovery.</p>
+              <a href="https://scholar.google.com/citations?hl=en&amp;user=CQZcPZQAAAAJ">Google Scholar profile</a>
+            </div>
+          </article>
+          <article class="publication">
+            <div>
+              <span class="meta">Prospectus</span>
+            </div>
+            <div>
+              <h3>Symbolic PDE Discovery with Foundation Models and Agentic Scientific Discovery</h3>
+              <p>Dissertation prospectus framing FoundPDE as the current foundation and PDEScientist as the next stage toward tool-using, evaluator-grounded scientific-discovery systems.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div>
+              <span class="meta">WASSA 2023</span>
+            </div>
+            <div>
+              <h3>Multilingual Language Models are not Multicultural: A Case Study in Emotion</h3>
+              <p>Earlier work studying whether multilingual language models capture culturally specific emotional expression across languages.</p>
+              <a href="https://aclanthology.org/2023.wassa-1.19/">ACL Anthology</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Blog</h2>
+          <p>A home for research notes, paper-reading notes, and technical explanations. The first posts will be short, figure-grounded notes rather than polished essays.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="meta">Research note</span>
+            <h3>Why Symbolic Correctness and Trajectory Accuracy Can Diverge</h3>
+            <p>A planned note on FoundPDE cases where a recovered PDE produces a plausible trajectory while still missing part of the symbolic structure.</p>
+          </article>
+          <article class="card">
+            <span class="meta">Technical note</span>
+            <h3>Evaluator-Owned Targets in PDE Discovery</h3>
+            <p>A planned explanation of why an agent should not define its own residual, and why PDE evaluators should own target derivatives and feature construction.</p>
+          </article>
+          <article class="card">
+            <span class="meta">Reading note</span>
+            <h3>From FoundPDE to PDEScientist</h3>
+            <p>A planned overview of the dissertation arc: direct generative symbolic discovery first, then iterative proposal, validation, and refinement.</p>
           </article>
         </div>
       </div>
