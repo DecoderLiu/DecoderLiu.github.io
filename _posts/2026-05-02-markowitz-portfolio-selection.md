@@ -15,6 +15,13 @@ $$
 
 The first stage forms beliefs about future security returns. The second stage turns those beliefs into portfolio weights. Markowitz mostly studies the second stage: if we already have expected returns and covariances, how should we choose the portfolio?
 
+Before getting into the algebra, here is the minimum vocabulary:
+
+- A portfolio is a weighted mix of assets.
+- Expected return is the payoff we hope to get on average.
+- Variance is a measure of uncertainty, so in this post it plays the role of risk.
+- The main question is: which mixes of assets are worth considering once we care about both return and risk?
+
 ## Why return alone is not enough
 
 The older rule that Markowitz pushes against says: maximize anticipated return. Let $R_i$ be the anticipated return of security $i$, and let $X_i$ be the fraction of wealth invested in that security. Portfolio anticipated return is
@@ -93,6 +100,20 @@ $$
 with at least one strict improvement.
 
 This definition is why the efficient set is usually a frontier rather than a single point. Along the frontier, moving toward higher return usually means accepting higher variance. Moving toward lower variance usually means accepting lower return. Choosing one final portfolio from the efficient frontier requires one more ingredient, such as a risk-aversion parameter, a target return, or a maximum acceptable variance.
+
+Here is a small example:
+
+| Portfolio | Expected return | Variance |
+| --- | ---: | ---: |
+| A | 10% | 0.09 |
+| B | 8% | 0.04 |
+| C | 10% | 0.04 |
+
+Portfolio C dominates portfolio A because it has the same return and lower variance. C also dominates B because it has the same variance and higher return. But A and B are not directly comparable: A has higher return, while B has lower variance. A reader who wants return may prefer A; a reader who hates risk may prefer B. This is why Markowitz does not simply produce one universally best portfolio without saying anything about risk preference.
+
+![AI-generated illustration of portfolio dominance and efficient frontier](/assets/blog/markowitz/ai-efficient-frontier-illustration.png)
+
+*AI-generated illustration, created with GPT-Image for this post. The blue curve represents nondominated portfolios. A point like A is dominated if another feasible point can move up to higher return or left to lower variance without making the other dimension worse.*
 
 ## Three securities reduce to a triangle
 
@@ -283,14 +304,6 @@ Each case is created by controlling two objects:
 - $R$, which rotates the isomean lines.
 - $\Sigma$, which moves the ellipse center $z_0$ and changes the ellipse shape.
 
-The five cases are:
-
-1. **Book Fig. 2:** choose $\Sigma$ so $z_0$ is inside the triangle. The efficient set starts near the interior low-variance point.
-2. **Book Fig. 3:** choose $\Sigma$ so $z_0$ violates the triangle constraint, here $X_1+X_2>1$. The lowest reachable variance is on the boundary.
-3. **Exercise Case 1:** choose $\Sigma$ and $R$ so the critical line misses the triangle. The efficient set moves to the boundary $X_3=0$, so security 3 is absent from efficient portfolios.
-4. **Exercise Case 2:** set $R_1=R_2$ so isomean lines are parallel to the edge between securities 1 and 2, then choose negative covariance between those two securities so diversification along that edge is valuable.
-5. **Exercise Case 3:** make one vertex both high-return and low-variance. The single portfolio $(1,0,0)$ dominates all others.
-
 When reading the plots, it helps to keep four objects separate:
 
 - The triangle is the set of portfolios we are allowed to hold.
@@ -300,15 +313,33 @@ When reading the plots, it helps to keep four objects separate:
 
 The efficient set is not simply "the top of the triangle" or "the closest point to the ellipse center." It is where the two goals meet: among portfolios that can achieve a given return, it keeps the lowest-variance ones.
 
-Here are the generated notebook versions of the cases:
+### Book Fig. 2: center inside the attainable triangle
+
+Choose $\Sigma$ so $z_0$ is inside the triangle. The efficient set starts near the interior low-variance point and then moves toward higher-return portfolios.
 
 ![Markowitz book figure 2 reproduction](/assets/blog/markowitz/markowitz-book-fig2-center-inside.png)
 
+### Book Fig. 3: center outside the attainable triangle
+
+Choose $\Sigma$ so $z_0$ violates the triangle constraint, here $X_1+X_2>1$. The lowest reachable variance is no longer at the unconstrained ellipse center; it is forced onto the feasible boundary.
+
 ![Markowitz book figure 3 reproduction](/assets/blog/markowitz/markowitz-book-fig3-center-outside.png)
+
+### Exercise Case 1: critical line misses the triangle
+
+Choose $\Sigma$ and $R$ so the critical line does not intersect the feasible triangle. The efficient set moves to the boundary $X_3=0$, which means security 3 is absent from efficient portfolios.
 
 ![Exercise case with a missing security](/assets/blog/markowitz/markowitz-case1-missing-security.png)
 
+### Exercise Case 2: two securities have the same expected return
+
+Set $R_1=R_2$ so the isomean lines are parallel to the edge between securities 1 and 2. Then choose negative covariance between those two securities so diversification along that edge is useful.
+
 ![Exercise case with equal returns](/assets/blog/markowitz/markowitz-case2-equal-returns.png)
+
+### Exercise Case 3: only one portfolio is efficient
+
+Make one vertex both high-return and low-variance. The single portfolio $(1,0,0)$ dominates every other feasible portfolio, so the efficient set collapses to one point.
 
 ![Exercise case where only one portfolio is efficient](/assets/blog/markowitz/markowitz-case3-single-efficient-portfolio.png)
 
@@ -317,6 +348,13 @@ Here are the generated notebook versions of the cases:
 Use the preset menu to recreate the five notebook plots. Then edit $R$ or the symmetric matrix $\Sigma$ directly.
 
 The matrix below is the covariance matrix used by the geometry. If you want to think in correlation-matrix terms, set the diagonal entries to $1$ and use correlations as the off-diagonal entries. The notebook cases use covariance matrices, so the presets keep the original $\Sigma$ values.
+
+A good way to use the widget:
+
+1. Start with **Book Fig. 2** and change only $R_2$. The blue isomean lines rotate, but the black ellipses do not.
+2. Change one diagonal entry of $\Sigma$, such as $\Sigma_{22}$. The ellipses reshape because the variance of that asset changed.
+3. Choose **Exercise 1** and notice that the green critical line misses the triangle, so the efficient set lives on a boundary.
+4. Choose **Exercise 3** and notice that the red efficient set collapses to one point.
 
 <div class="markowitz-demo" id="markowitz-demo">
   <div class="demo-toolbar">
@@ -979,8 +1017,10 @@ Solving the three triangle inequalities for $z(t)=z_0+td$ gives no common interv
 
 ## Takeaway
 
+Markowitz's main insight is not that every investor must literally use this three-security picture. The main insight is that diversification is not just a slogan. It comes from covariance.
+
 The old rule fails because expected return alone is a weighted average. It gives no reason to diversify unless several assets tie for best expected return.
 
 Mean-variance analysis adds the missing object: covariance. Once variance enters the decision, diversification can improve the portfolio because the covariance matrix determines whether risks offset each other.
 
-That is the core idea behind the efficient frontier.
+Once we measure risk with variance, the best portfolios are no longer simply the highest-return portfolios. They are the nondominated tradeoffs between return and risk. That is the core idea behind the efficient frontier.
