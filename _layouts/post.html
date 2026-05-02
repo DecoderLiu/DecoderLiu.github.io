@@ -59,6 +59,13 @@
       font-weight: 760;
     }
 
+    nav {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     main {
       padding: 72px 0 96px;
     }
@@ -151,6 +158,12 @@
       margin-top: 48px;
       color: var(--muted);
     }
+
+    @media (max-width: 720px) {
+      nav {
+        display: none;
+      }
+    }
   </style>
   <script>
     window.MathJax = {
@@ -169,7 +182,12 @@
   <header>
     <div class="shell nav">
       <a class="mark" href="{{ "/" | relative_url }}">Langchen Liu</a>
-      <a href="{{ "/blog/" | relative_url }}">Blog</a>
+      <nav aria-label="Primary navigation">
+        <a href="{{ "/#research" | relative_url }}">Research</a>
+        <a href="{{ "/#projects" | relative_url }}">Projects</a>
+        <a href="{{ "/#publications" | relative_url }}">Publications</a>
+        <a href="{{ "/blog/" | relative_url }}">Blog</a>
+      </nav>
     </div>
   </header>
 
