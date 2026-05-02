@@ -5,7 +5,7 @@ description: "A mathematical reading note on Markowitz's three-security geometry
 category_label: "Reading note"
 ---
 
-Harry Markowitz's 1952 paper is not just the origin story of mean-variance optimization. It is also a clean geometric argument for why portfolio choice needs both expected return and variance.
+Harry Markowitz's 1952 paper is famous because it starts mean-variance portfolio theory. What I like about the paper is that the main idea can be seen geometrically. Once you draw expected return and variance in the same picture, it becomes clear why "just choose the highest return" is not a satisfactory rule.
 
 The paper separates portfolio selection into two stages:
 
@@ -13,11 +13,11 @@ $$
 \text{data and judgment} \rightarrow (\mu,\Sigma) \rightarrow w.
 $$
 
-The first stage forms beliefs about future security returns. The second stage turns those beliefs into portfolio weights. The paper mostly studies the second stage.
+The first stage forms beliefs about future security returns. The second stage turns those beliefs into portfolio weights. Markowitz mostly studies the second stage: if we already have expected returns and covariances, how should we choose the portfolio?
 
 ## Why return alone is not enough
 
-The old rule says to maximize anticipated return. Let $R_i$ be the anticipated return of security $i$, and let $X_i$ be the fraction of wealth invested in that security. Portfolio anticipated return is
+The older rule that Markowitz pushes against says: maximize anticipated return. Let $R_i$ be the anticipated return of security $i$, and let $X_i$ be the fraction of wealth invested in that security. Portfolio anticipated return is
 
 $$
 R_p=\sum_i X_iR_i.
@@ -43,16 +43,16 @@ $$
 E=R^\top X,\qquad V=X^\top\Sigma X.
 $$
 
-The key asymmetry is simple:
+The important asymmetry is:
 
 - $E$ is linear in $X$.
 - $V$ is quadratic in $X$.
 
-That quadratic term is where covariance enters. If assets do not move perfectly together, a mixture can reduce variance without proportionally reducing expected return.
+That quadratic term is where covariance enters. If assets do not move perfectly together, a mixture can reduce variance without giving up return in the same proportion. This is the mathematical opening for diversification.
 
 ## What does efficient mean?
 
-Once we care about both expected return and variance, there may not be one portfolio that is best in every sense. The ideal portfolio would have the highest possible expected return and the lowest possible variance at the same time. Sometimes that can happen, but usually it does not.
+Once we care about both expected return and variance, there may not be one portfolio that is best in every sense. The dream portfolio would have the highest possible expected return and the lowest possible variance at the same time. Sometimes that happens, but it is not something we can count on.
 
 The conflict is:
 
@@ -62,7 +62,7 @@ $$
 \text{prefer smaller } V.
 $$
 
-These two preferences define a partial order rather than a single scalar objective. One portfolio can clearly dominate another, but many portfolios may be incomparable.
+These two preferences define a partial order rather than a single scalar objective. Some comparisons are easy, but many are not. If one portfolio has higher return and lower variance, we clearly prefer it. If one portfolio has higher return and also higher variance, then we need a risk preference to decide.
 
 Say portfolio $X$ has return and variance
 
@@ -76,13 +76,13 @@ $$
 (E_Y,V_Y).
 $$
 
-Portfolio $Y$ dominates portfolio $X$ if
+Portfolio $Y$ **dominates** portfolio $X$ if
 
 $$
 E_Y\ge E_X,\qquad V_Y\le V_X,
 $$
 
-and at least one of those two inequalities is strict. In words, $Y$ is at least as good on both dimensions and strictly better on one: it gives no less return with no more variance, or no more variance with strictly higher return.
+and at least one of those two inequalities is strict. In words, $Y$ is at least as good on both dimensions and strictly better on one. It gives no less return with no more variance, or no more variance with strictly higher return.
 
 A portfolio is **efficient** if no feasible portfolio dominates it. Equivalently, $X$ is efficient if there is no other feasible $Y$ such that
 
@@ -92,11 +92,11 @@ $$
 
 with at least one strict improvement.
 
-This definition is the reason the efficient set is usually a frontier rather than a single point. Along the frontier, moving toward higher return usually requires accepting higher variance. Moving toward lower variance usually requires accepting lower return. Choosing one final portfolio from the efficient frontier requires an additional preference, such as a risk-aversion parameter, a target return, or a maximum acceptable variance.
+This definition is why the efficient set is usually a frontier rather than a single point. Along the frontier, moving toward higher return usually means accepting higher variance. Moving toward lower variance usually means accepting lower return. Choosing one final portfolio from the efficient frontier requires one more ingredient, such as a risk-aversion parameter, a target return, or a maximum acceptable variance.
 
 ## Three securities reduce to a triangle
 
-Markowitz's geometric figures use three securities. Since
+Markowitz's figures use three securities. That is a convenient case because three portfolio weights can be drawn on a two-dimensional page. Since
 
 $$
 X_1+X_2+X_3=1,
@@ -124,7 +124,7 @@ E
 \end{aligned}
 $$
 
-Therefore fixed-$E$ curves are straight isomean lines in the $(X_1,X_2)$ plane. The return vector $R$ controls their slope.
+Therefore fixed-$E$ curves are straight isomean lines in the $(X_1,X_2)$ plane. The return vector $R$ controls their slope. If we change $R$, the blue dashed lines in the widget below rotate, while the variance ellipses stay the same.
 
 ## Variance becomes an ellipse
 
@@ -152,7 +152,7 @@ X_2\\
 \end{bmatrix}.
 $$
 
-Substitute into variance:
+Now substitute this into variance:
 
 $$
 \begin{aligned}
@@ -178,23 +178,53 @@ $$
 V(z)=z^\top A z+2b^\top z+c.
 $$
 
-The unconstrained minimum-variance point, which is the center of the isovariance ellipses, solves
+This is a two-dimensional quadratic function. The reason its level curves are ellipses is the same reason a simple equation like
 
 $$
-\nabla V=2Az+2b=0.
+ax^2+by^2=k,\qquad a>0,\;b>0
 $$
 
-So
+draws an ellipse: the squared terms measure distance from a center, but the two directions may be stretched by different amounts.
+
+In the general case, the expression has a cross term and a linear term, so the ellipse may be tilted and shifted. Complete the square around the minimum point $z_0$:
+
+$$
+V(z)
+= (z-z_0)^\top A(z-z_0)
++ \text{constant}.
+$$
+
+If $A$ is positive definite, then its eigenvectors give the principal axes of the ellipse, and its eigenvalues control how quickly variance increases along those axes. A larger eigenvalue means variance rises faster in that direction, so the ellipse is narrower there. This is what the black curves in the plots show: all points on the same black curve have the same variance.
+
+The unconstrained minimum-variance point, which is also the center of the ellipses, solves
+
+$$
+\nabla V=2Az+2b=0,
+$$
+
+so
 
 $$
 z_0=-A^{-1}b.
 $$
 
-If $z_0$ lies inside the triangle, the minimum-variance feasible portfolio is interior. If $z_0$ lies outside the triangle, the minimum feasible variance is on the boundary.
+If $z_0$ lies inside the triangle, the minimum-variance feasible portfolio is an interior point. If $z_0$ lies outside the triangle, the investor cannot hold that unconstrained minimum-variance portfolio under the long-only constraint. The best feasible low-variance portfolio must then occur on the boundary of the triangle.
 
 ## Critical line
 
-The critical line is the unconstrained path of tangency points between isomean lines and isovariance ellipses. The gradient of expected return in the $(X_1,X_2)$ plane is
+The critical line is the unconstrained path of tangency points between isomean lines and isovariance ellipses.
+
+Here is the intuition. Fix a target expected return $E^\star$. Among all points on that fixed-return line, we want the point with the smallest variance. Geometrically, that is where the fixed-return line first touches a variance ellipse. If the line cuts through an ellipse, then there are nearby points on the same return line with smaller variance. At the minimum-variance point for that return level, the return line is tangent to the variance ellipse.
+
+In calculus terms, minimizing $V$ while holding $E$ fixed gives the condition
+
+$$
+\nabla V = \lambda \nabla E
+$$
+
+for some multiplier $\lambda$. This says the two gradients are parallel, which is the same as saying the two level curves are tangent.
+
+The gradient of expected return in the $(X_1,X_2)$ plane is
 
 $$
 \nabla E=
@@ -216,7 +246,9 @@ $$
 d=A^{-1}\nabla E,\qquad z(t)=z_0+td.
 $$
 
-Before imposing the long-only triangle, this is the direction along which the optimal variance point moves as we ask for higher expected return. After imposing the triangle, part or all of that line may be infeasible.
+Before imposing the long-only triangle, this is the direction along which the minimum-variance point moves as we ask for higher expected return. In that unconstrained picture, the relevant part of the critical line is efficient: for each return level, the tangency point is the lowest-variance way to get that return.
+
+The triangle constraint changes the story. The critical line may pass through the feasible triangle, hit a boundary, or miss the triangle completely. When it is inside the triangle and moving in the direction of increasing return from the minimum-variance point, it traces the interior part of the efficient frontier. Once it leaves the triangle, the efficient set continues along a boundary if no interior point can dominate it.
 
 To check whether the critical line intersects the attainable triangle, solve the three inequalities:
 
@@ -258,6 +290,15 @@ The five cases are:
 3. **Exercise Case 1:** choose $\Sigma$ and $R$ so the critical line misses the triangle. The efficient set moves to the boundary $X_3=0$, so security 3 is absent from efficient portfolios.
 4. **Exercise Case 2:** set $R_1=R_2$ so isomean lines are parallel to the edge between securities 1 and 2, then choose negative covariance between those two securities so diversification along that edge is valuable.
 5. **Exercise Case 3:** make one vertex both high-return and low-variance. The single portfolio $(1,0,0)$ dominates all others.
+
+When reading the plots, it helps to keep four objects separate:
+
+- The triangle is the set of portfolios we are allowed to hold.
+- The blue dashed lines are equal-return lines. Moving to a higher blue line means higher $E$.
+- The black ellipses are equal-variance curves. Moving toward the ellipse center means lower $V$.
+- The red curve is the efficient set: the portfolios that survive the dominance test.
+
+The efficient set is not simply "the top of the triangle" or "the closest point to the ellipse center." It is where the two goals meet: among portfolios that can achieve a given return, it keeps the lowest-variance ones.
 
 Here are the generated notebook versions of the cases:
 
