@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://decoderliu.github.io/sitemap.xml

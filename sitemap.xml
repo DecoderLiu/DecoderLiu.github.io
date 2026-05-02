@@ -1,0 +1,28 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ "/" | absolute_url }}</loc>
+  </url>
+  <url>
+    <loc>{{ "/blog/" | absolute_url }}</loc>
+  </url>
+  <url>
+    <loc>{{ "/blog/how-to-write/" | absolute_url }}</loc>
+  </url>
+  {% for page in site.pages %}
+    {% if page.url contains "/projects/" or page.url contains "/publications/" or page.url contains "/research/" %}
+  <url>
+    <loc>{{ page.url | absolute_url }}</loc>
+  </url>
+    {% endif %}
+  {% endfor %}
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ post.url | absolute_url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>
