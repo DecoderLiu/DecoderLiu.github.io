@@ -111,7 +111,7 @@ Here is a small example:
 
 Portfolio C dominates portfolio A because it has the same return and lower variance. C also dominates B because it has the same variance and higher return. But A and B are not directly comparable: A has higher return, while B has lower variance. A reader who wants return may prefer A; a reader who hates risk may prefer B. This is why Markowitz does not simply produce one universally best portfolio without saying anything about risk preference.
 
-![AI-generated illustration of portfolio dominance and efficient frontier](/assets/blog/markowitz/ai-efficient-frontier-illustration.png)
+![AI-generated illustration of portfolio dominance and efficient frontier](/assets/blog/markowitz/ai-efficient-frontier-illustration.png?v=61036fd)
 
 *AI-generated illustration, created with GPT-Image-2 for this post. The blue curve represents nondominated portfolios. The red point is dominated because moving upward improves return at the same risk, while moving left would reduce risk at the same return.*
 
