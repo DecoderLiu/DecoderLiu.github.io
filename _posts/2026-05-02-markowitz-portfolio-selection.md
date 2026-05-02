@@ -5,9 +5,13 @@ description: "A worked reading note on Markowitz's three-security geometry, with
 category_label: "Reading note"
 ---
 
-I started reading Markowitz's 1952 paper because it is the beginning of mean-variance portfolio theory. I stayed with it because the paper is much more geometric than I expected. In the three-security case, the whole problem can be drawn on a page: straight lines for return, ellipses for variance, and a triangle for the portfolios we are allowed to hold.
+I am new to quantitative finance, so I wanted my first topic to be something basic enough to be foundational but still mathematical enough to be interesting. Portfolio optimization felt like the right starting point. It is one of those phrases I had heard many times, but I did not really know what the first principles looked like.
 
-That picture helped me understand the main point of the paper. "Choose the highest return" sounds reasonable until you draw risk on the same figure. Then the rule starts to look incomplete.
+That led me to Markowitz's 1952 paper, *Portfolio Selection*. It is short, and I expected it to be more historical than useful. Instead, I found it surprisingly alive. The paper is not just saying "diversify because diversification is good." It shows, with a small geometric picture, why return alone is the wrong objective.
+
+The part that caught me was the three-security case. The whole problem can be drawn on a page: straight lines for return, ellipses for variance, and a triangle for the portfolios we are allowed to hold. Once I saw that picture, the slogan became much more concrete. "Choose the highest return" sounds reasonable until risk is drawn on the same figure. Then the rule starts to look incomplete.
+
+This post is my worked reading note. I am not trying to write a finance textbook. I am trying to record the path from "I have heard of portfolio optimization" to "I can see what Markowitz is doing in the geometry."
 
 The paper separates portfolio selection into two stages:
 
