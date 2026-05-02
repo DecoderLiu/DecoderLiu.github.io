@@ -315,31 +315,482 @@ The efficient set is not simply "the top of the triangle" or "the closest point 
 
 ### Book Fig. 2: center inside the attainable triangle
 
-Choose $\Sigma$ so $z_0$ is inside the triangle. The efficient set starts near the interior low-variance point and then moves toward higher-return portfolios.
+This is the cleanest case. We choose $\Sigma$ so the ellipse center $z_0$ is inside the triangle. The efficient set starts near the interior low-variance point and then moves toward higher-return portfolios.
+
+The inputs are
+
+$$
+R=\begin{bmatrix}0.08&0.14&0.03\end{bmatrix},
+\qquad
+\Sigma=
+\begin{bmatrix}
+0.09&0&0\\
+0&0.06&0\\
+0&0&0.04
+\end{bmatrix}.
+$$
+
+Using $X_3=1-X_1-X_2$, the expected return becomes
+
+$$
+E=X_1R_1+X_2R_2+(1-X_1-X_2)R_3
+  =0.03+0.05X_1+0.11X_2.
+$$
+
+So the isomean lines have normal vector
+
+$$
+\nabla E=
+\begin{bmatrix}
+R_1-R_3\\
+R_2-R_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.05\\
+0.11
+\end{bmatrix}.
+$$
+
+The variance is
+
+$$
+V=X^\top\Sigma X
+  =0.09X_1^2+0.06X_2^2+0.04(1-X_1-X_2)^2.
+$$
+
+After collecting terms,
+
+$$
+V=0.13X_1^2+0.08X_1X_2+0.10X_2^2-0.08X_1-0.08X_2+0.04.
+$$
+
+In the form $V(z)=z^\top A z+2b^\top z+c$, where $z=(X_1,X_2)^\top$,
+
+$$
+A=
+\begin{bmatrix}
+0.13&0.04\\
+0.04&0.10
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+-0.04\\
+-0.04
+\end{bmatrix},
+\qquad
+c=0.04.
+$$
+
+The ellipse center is
+
+$$
+z_0=-A^{-1}b=
+\begin{bmatrix}
+0.210526\\
+0.315789
+\end{bmatrix}.
+$$
+
+This point is feasible because both coordinates are nonnegative and
+
+$$
+0.210526+0.315789<1.
+$$
+
+The critical-line direction is
+
+$$
+d=A^{-1}\nabla E
+=
+\begin{bmatrix}
+0.052632\\
+1.078947
+\end{bmatrix},
+\qquad
+z(t)=z_0+td.
+$$
+
+That is why the picture shows an interior ellipse center and an efficient set that begins near the low-variance interior region before moving toward the high-return edge.
 
 ![Markowitz book figure 2 reproduction](/assets/blog/markowitz/markowitz-book-fig2-center-inside.png)
 
 ### Book Fig. 3: center outside the attainable triangle
 
-Choose $\Sigma$ so $z_0$ violates the triangle constraint, here $X_1+X_2>1$. The lowest reachable variance is no longer at the unconstrained ellipse center; it is forced onto the feasible boundary.
+Here the unconstrained minimum-variance point is outside the triangle. The lowest reachable variance is no longer at the ellipse center itself; it is forced onto the feasible boundary.
+
+The inputs are
+
+$$
+R=\begin{bmatrix}0.143594&0.140737&0.135630\end{bmatrix},
+\qquad
+\Sigma=
+\begin{bmatrix}
+4.515211&-4.122941&-0.395992\\
+-4.122941&4.859773&1.065369\\
+-0.395992&1.065369&0.831767
+\end{bmatrix}.
+$$
+
+The expected return plane is
+
+$$
+E=0.135630+0.007964X_1+0.005107X_2,
+$$
+
+so
+
+$$
+\nabla E=
+\begin{bmatrix}
+0.007964\\
+0.005107
+\end{bmatrix}.
+$$
+
+Substituting $X_3=1-X_1-X_2$ into $V=X^\top\Sigma X$ gives
+
+$$
+\begin{aligned}
+V={}&4.515211X_1^2+4.859773X_2^2+0.831767(1-X_1-X_2)^2\\
+&-8.245882X_1X_2-0.791983X_1(1-X_1-X_2)
++2.130738X_2(1-X_1-X_2).
+\end{aligned}
+$$
+
+After collecting terms,
+
+$$
+V=6.138961X_1^2-7.921103X_1X_2+3.560802X_2^2-2.455517X_1+0.467204X_2+0.831767.
+$$
+
+Therefore
+
+$$
+A=
+\begin{bmatrix}
+6.138961&-3.960551\\
+-3.960551&3.560802
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+-1.227758\\
+0.233602
+\end{bmatrix},
+\qquad
+c=0.831767.
+$$
+
+The ellipse center is
+
+$$
+z_0=-A^{-1}b=
+\begin{bmatrix}
+0.558277\\
+0.555348
+\end{bmatrix}.
+$$
+
+This violates the triangle constraint because
+
+$$
+0.558277+0.555348>1.
+$$
+
+The critical-line direction is
+
+$$
+d=A^{-1}\nabla E=
+\begin{bmatrix}
+0.007870\\
+0.010188
+\end{bmatrix}.
+$$
+
+The critical line still reaches the feasible triangle, but the minimum-variance center itself is outside. The efficient set is therefore pushed onto a boundary, and in this construction security 3 drops out along the efficient part.
 
 ![Markowitz book figure 3 reproduction](/assets/blog/markowitz/markowitz-book-fig3-center-outside.png)
 
 ### Exercise Case 1: critical line misses the triangle
 
-Choose $\Sigma$ and $R$ so the critical line does not intersect the feasible triangle. The efficient set moves to the boundary $X_3=0$, which means security 3 is absent from efficient portfolios.
+This case is more extreme than Book Fig. 3. The ellipse center is outside the triangle, and the entire unconstrained critical line misses the triangle. The efficient portfolios must then live on a boundary.
+
+The inputs are
+
+$$
+R=\begin{bmatrix}0.113307&0.093703&0.099861\end{bmatrix},
+\qquad
+\Sigma=
+\begin{bmatrix}
+0.042838&-0.014732&0.063320\\
+-0.014732&0.127790&0.095559\\
+0.063320&0.095559&0.369518
+\end{bmatrix}.
+$$
+
+The return plane is
+
+$$
+E=0.099861+0.013446X_1-0.006158X_2,
+$$
+
+so
+
+$$
+\nabla E=
+\begin{bmatrix}
+0.013446\\
+-0.006158
+\end{bmatrix}.
+$$
+
+The variance expands to
+
+$$
+\begin{aligned}
+V={}&0.042838X_1^2+0.127790X_2^2+0.369518(1-X_1-X_2)^2\\
+&-0.029463X_1X_2+0.126640X_1(1-X_1-X_2)
++0.191117X_2(1-X_1-X_2).
+\end{aligned}
+$$
+
+After collecting terms,
+
+$$
+V=0.285716X_1^2+0.391816X_1X_2+0.306191X_2^2-0.612397X_1-0.547919X_2+0.369518.
+$$
+
+Thus
+
+$$
+A=
+\begin{bmatrix}
+0.285716&0.195908\\
+0.195908&0.306191
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+-0.306198\\
+-0.273960
+\end{bmatrix},
+\qquad
+c=0.369518.
+$$
+
+The ellipse center is
+
+$$
+z_0=
+\begin{bmatrix}
+0.816318\\
+0.372436
+\end{bmatrix},
+$$
+
+which is outside the triangle because
+
+$$
+0.816318+0.372436>1.
+$$
+
+The critical-line direction is
+
+$$
+d=A^{-1}\nabla E=
+\begin{bmatrix}
+0.108413\\
+-0.089476
+\end{bmatrix}.
+$$
+
+When we solve the three feasibility inequalities for $z(t)=z_0+td$,
+
+$$
+z_1(t)\ge 0,\qquad z_2(t)\ge 0,\qquad z_1(t)+z_2(t)\le 1,
+$$
+
+the three intervals have no common overlap. So the unconstrained tangency path never enters the attainable triangle. The efficient set moves to the boundary $X_3=0$, which means security 3 is absent from efficient portfolios.
 
 ![Exercise case with a missing security](/assets/blog/markowitz/markowitz-case1-missing-security.png)
 
 ### Exercise Case 2: two securities have the same expected return
 
-Set $R_1=R_2$ so the isomean lines are parallel to the edge between securities 1 and 2. Then choose negative covariance between those two securities so diversification along that edge is useful.
+This case shows why equal return does not mean equal usefulness. Securities 1 and 2 have the same expected return, but because their covariance is negative, mixing them can reduce variance.
+
+The inputs are
+
+$$
+R=\begin{bmatrix}0.12&0.12&0.05\end{bmatrix},
+\qquad
+\Sigma=
+\begin{bmatrix}
+0.04&-0.02&0\\
+-0.02&0.04&0\\
+0&0&0.025
+\end{bmatrix}.
+$$
+
+Since $R_1=R_2$, the return equation is
+
+$$
+E=0.05+0.07X_1+0.07X_2.
+$$
+
+Equivalently,
+
+$$
+E=0.05+0.07(X_1+X_2).
+$$
+
+This means return only cares about the combined weight in securities 1 and 2, not how that combined weight is split between them. Geometrically, the isomean lines are parallel to the edge joining securities 1 and 2.
+
+The variance is
+
+$$
+V=0.04X_1^2+0.04X_2^2+0.025(1-X_1-X_2)^2-0.04X_1X_2.
+$$
+
+After collecting terms,
+
+$$
+V=0.065X_1^2+0.01X_1X_2+0.065X_2^2-0.05X_1-0.05X_2+0.025.
+$$
+
+So
+
+$$
+A=
+\begin{bmatrix}
+0.065&0.005\\
+0.005&0.065
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+-0.025\\
+-0.025
+\end{bmatrix},
+\qquad
+c=0.025.
+$$
+
+The ellipse center is
+
+$$
+z_0=-A^{-1}b=
+\begin{bmatrix}
+0.357143\\
+0.357143
+\end{bmatrix}.
+$$
+
+The critical-line direction is
+
+$$
+d=A^{-1}
+\begin{bmatrix}
+0.07\\
+0.07
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\\
+1
+\end{bmatrix}.
+$$
+
+The equal entries in $d$ are the main visual clue. The efficient path moves in a balanced direction between securities 1 and 2. At the high-return end, the useful portfolio is not "all security 1" or "all security 2"; it is the diversified mix that exploits their negative covariance.
 
 ![Exercise case with equal returns](/assets/blog/markowitz/markowitz-case2-equal-returns.png)
 
 ### Exercise Case 3: only one portfolio is efficient
 
-Make one vertex both high-return and low-variance. The single portfolio $(1,0,0)$ dominates every other feasible portfolio, so the efficient set collapses to one point.
+In this final case, one vertex is deliberately made both high-return and low-variance. The efficient set collapses to a single portfolio.
+
+The inputs are
+
+$$
+R=\begin{bmatrix}0.12&0.08&0.04\end{bmatrix},
+\qquad
+\Sigma=
+\begin{bmatrix}
+0.01&0.015&0.02\\
+0.015&0.04&0.04\\
+0.02&0.04&0.09
+\end{bmatrix}.
+$$
+
+The expected return plane is
+
+$$
+E=0.04+0.08X_1+0.04X_2.
+$$
+
+Security 1 has the largest return. The covariance matrix is also chosen so moving away from security 1 increases variance rather than reducing it.
+
+The variance expands to
+
+$$
+\begin{aligned}
+V={}&0.01X_1^2+0.04X_2^2+0.09(1-X_1-X_2)^2\\
+&+0.03X_1X_2+0.04X_1(1-X_1-X_2)
++0.08X_2(1-X_1-X_2).
+\end{aligned}
+$$
+
+After collecting terms,
+
+$$
+V=0.06X_1^2+0.09X_1X_2+0.05X_2^2-0.14X_1-0.10X_2+0.09.
+$$
+
+Thus
+
+$$
+A=
+\begin{bmatrix}
+0.06&0.045\\
+0.045&0.05
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+-0.07\\
+-0.05
+\end{bmatrix},
+\qquad
+c=0.09.
+$$
+
+The ellipse center is
+
+$$
+z_0=-A^{-1}b=
+\begin{bmatrix}
+1.282051\\
+-0.153846
+\end{bmatrix}.
+$$
+
+That center is infeasible because $X_2<0$. The critical-line direction is
+
+$$
+d=A^{-1}
+\begin{bmatrix}
+0.08\\
+0.04
+\end{bmatrix}
+=
+\begin{bmatrix}
+2.256410\\
+-1.230769
+\end{bmatrix}.
+$$
+
+The direction points even farther toward security 1 and away from security 2. Within the feasible triangle, the portfolio $(1,0,0)$ has the highest expected return and is not beaten on variance by any other feasible mixture. Every other point is dominated, so the efficient frontier is just that one vertex.
 
 ![Exercise case where only one portfolio is efficient](/assets/blog/markowitz/markowitz-case3-single-efficient-portfolio.png)
 
@@ -871,149 +1322,6 @@ A good way to use the widget:
     draw();
   }());
 </script>
-
-## One worked case: Book Fig. 2
-
-For the first book-style case, use
-
-$$
-R=\begin{bmatrix}0.08&0.14&0.03\end{bmatrix},
-\qquad
-\Sigma=
-\begin{bmatrix}
-0.09&0&0\\
-0&0.06&0\\
-0&0&0.04
-\end{bmatrix}.
-$$
-
-The isomean equation is
-
-$$
-E=0.03+0.05X_1+0.11X_2.
-$$
-
-Variance is
-
-$$
-V=0.09X_1^2+0.06X_2^2+0.04(1-X_1-X_2)^2.
-$$
-
-After collecting terms,
-
-$$
-V=0.13X_1^2+0.08X_1X_2+0.10X_2^2-0.08X_1-0.08X_2+0.04.
-$$
-
-So
-
-$$
-A=
-\begin{bmatrix}
-0.13&0.04\\
-0.04&0.10
-\end{bmatrix},
-\qquad
-b=
-\begin{bmatrix}
--0.04\\
--0.04
-\end{bmatrix},
-\qquad
-c=0.04.
-$$
-
-The ellipse center is
-
-$$
-z_0=-A^{-1}b=
-\begin{bmatrix}
-0.210526\\
-0.315789
-\end{bmatrix},
-$$
-
-which is inside the triangle because both coordinates are nonnegative and
-
-$$
-0.210526+0.315789<1.
-$$
-
-The critical-line direction is
-
-$$
-d=A^{-1}
-\begin{bmatrix}
-R_1-R_3\\
-R_2-R_3
-\end{bmatrix}
-=
-A^{-1}
-\begin{bmatrix}
-0.05\\
-0.11
-\end{bmatrix}
-=
-\begin{bmatrix}
-0.052632\\
-1.078947
-\end{bmatrix}.
-$$
-
-That is why the first plot shows an interior ellipse center and an efficient set that begins near the low-variance interior region.
-
-## One boundary case: Exercise Case 1
-
-For the case where the critical line misses the triangle, use
-
-$$
-R=\begin{bmatrix}0.113307&0.093703&0.099861\end{bmatrix},
-$$
-
-and
-
-$$
-\Sigma=
-\begin{bmatrix}
-0.042838&-0.014732&0.063320\\
--0.014732&0.127790&0.095559\\
-0.063320&0.095559&0.369518
-\end{bmatrix}.
-$$
-
-The return plane becomes
-
-$$
-E=0.099861+0.013446X_1-0.006158X_2.
-$$
-
-The ellipse center is
-
-$$
-z_0=
-\begin{bmatrix}
-0.816318\\
-0.372436
-\end{bmatrix},
-$$
-
-which violates the triangle because
-
-$$
-0.816318+0.372436>1.
-$$
-
-The critical-line direction is
-
-$$
-d=
-\begin{bmatrix}
-0.108413\\
--0.089476
-\end{bmatrix}.
-$$
-
-Solving the three triangle inequalities for $z(t)=z_0+td$ gives no common interval, so the unconstrained tangency path never enters the attainable triangle. The efficient portfolios therefore move to the boundary. In this construction the relevant boundary is $X_3=0$, so security 3 is absent from the efficient set.
 
 ## Takeaway
 
