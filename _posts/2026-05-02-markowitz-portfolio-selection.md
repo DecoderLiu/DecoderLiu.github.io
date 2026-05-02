@@ -113,7 +113,7 @@ Portfolio C dominates portfolio A because it has the same return and lower varia
 
 ![AI-generated illustration of portfolio dominance and efficient frontier](/assets/blog/markowitz/ai-efficient-frontier-illustration.png)
 
-*AI-generated illustration, created with GPT-Image for this post. The blue curve represents nondominated portfolios. A point like A is dominated if another feasible point can move up to higher return or left to lower variance without making the other dimension worse.*
+*AI-generated illustration, created with GPT-Image-2 for this post. The blue curve represents nondominated portfolios. The red point is dominated because moving upward improves return at the same risk, while moving left would reduce risk at the same return.*
 
 ## Three securities reduce to a triangle
 
