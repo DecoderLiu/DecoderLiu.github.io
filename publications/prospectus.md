@@ -12,8 +12,18 @@ This prospectus frames my current dissertation direction around symbolic PDE dis
 
 The research arc starts with direct symbolic prediction from data and then moves toward systems that can propose, evaluate, and refine scientific hypotheses with tool feedback.
 
+## Research arc
+
+The prospectus treats PDE discovery as the scientific problem, FoundPDE as the current foundation-model result, and PDEScientist as the next stage toward evaluator-grounded agentic discovery.
+
 ## Connected projects
 
 - FoundPDE as the foundation-model component.
 - PDEScientist as the iterative agentic-discovery component.
 - PDE evaluation loops as the infrastructure connecting model outputs to scientific validation.
+
+## Related pages
+
+- [FoundPDE](/projects/foundpde/)
+- [PDEScientist](/projects/pdescientist/)
+- [PDE Evaluation Loops](/projects/pde-evaluation-loops/)

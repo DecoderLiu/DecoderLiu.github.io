@@ -15,6 +15,10 @@ This manuscript presents FoundPDE, a generative foundation model for symbolic di
 
 FoundPDE maps discretized solution trajectories to symbolic PDE expressions. The broader workflow combines generative symbolic prediction with scientific feature information and coefficient refinement.
 
+## Role in my research
+
+This is the central current manuscript in my research profile. It anchors the foundation-model side of my dissertation direction and motivates the later move toward PDEScientist, where symbolic proposal is embedded in an iterative evaluation loop.
+
 ## Topics
 
 - Symbolic PDE discovery.
@@ -22,3 +26,9 @@ FoundPDE maps discretized solution trajectories to symbolic PDE expressions. The
 - Coefficient refinement.
 - Sparse-data and noisy-data evaluation.
 - Few-shot adaptation and compositional discovery.
+
+## Related pages
+
+- [FoundPDE project](/projects/foundpde/)
+- [Foundation Models for Science](/research/foundation-models-for-science/)
+- [Symbolic PDE Discovery](/research/symbolic-pde-discovery/)

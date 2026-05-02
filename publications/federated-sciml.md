@@ -19,9 +19,17 @@ Published in IEEE Transactions on Neural Networks and Learning Systems, 2025.
 
 This work studies federated scientific machine learning for function approximation and differential-equation problems when data are distributed across clients and may be heterogeneous.
 
+## Role in my research path
+
+This is earlier work in scientific machine learning. It is not the center of my current dissertation direction, but it connects to my broader interest in learning from scientific data under constraints such as decentralization, heterogeneity, and limited sharing.
+
 ## Topics
 
 - Federated learning for scientific machine learning.
 - Federated physics-informed neural networks.
 - Federated DeepONet-style operator learning.
 - Data heterogeneity and decentralized scientific data.
+
+## Connection to current work
+
+My current work has moved from federated scientific learning toward symbolic PDE discovery and scientific-discovery systems, but the shared theme is still scientific machine learning under realistic data constraints.

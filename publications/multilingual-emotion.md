@@ -19,8 +19,16 @@ Published in the 13th Workshop on Computational Approaches to Subjectivity, Sent
 
 This earlier work studies whether multilingual language models capture culturally specific emotional expression across languages.
 
+## Role in my research path
+
+This is earlier NLP and computational social-science work. It is separate from my current PDE-discovery agenda, but it reflects an early interest in evaluating what machine-learning models actually learn, rather than assuming good benchmark behavior means conceptual understanding.
+
 ## Topics
 
 - Multilingual language models.
 - Cultural variation in emotion.
 - Social media and affective computing.
+
+## Connection to current work
+
+The domain is different from my current scientific machine-learning work, but the evaluation theme remains relevant: models can appear competent while missing the structure that matters for the problem.
