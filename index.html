@@ -281,12 +281,31 @@
     }
 
     .card {
+      display: block;
       min-height: 180px;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: 0 10px 34px rgba(22, 30, 45, 0.07);
+    }
+
+    .card-link,
+    .publication-link {
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .card-link:hover,
+    .publication-link:hover {
+      border-color: rgba(36, 87, 197, 0.38);
+      color: inherit;
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(22, 30, 45, 0.1);
+    }
+
+    .card-link:hover h3,
+    .publication-link:hover h3 {
+      color: var(--blue);
     }
 
     .card h3 {
@@ -528,7 +547,7 @@
           <p>My current work is organized around symbolic PDE discovery with foundation models and agentic scientific-discovery systems.</p>
         </div>
         <div class="grid">
-          <article class="card">
+          <a class="card card-link" href="research/symbolic-pde-discovery/">
             <span class="meta">Problem</span>
             <h3>Symbolic PDE Discovery</h3>
             <p>Recovering interpretable governing equations from numerical solution fields, especially when data are sparse or noisy.</p>
@@ -537,8 +556,8 @@
               <span class="tag">symbolic structure</span>
               <span class="tag">spatiotemporal data</span>
             </div>
-          </article>
-          <article class="card">
+          </a>
+          <a class="card card-link" href="research/foundation-models-for-science/">
             <span class="meta">Method</span>
             <h3>Foundation Models for Science</h3>
             <p>Training reusable models across PDE families so symbolic discovery becomes a learned data-to-sequence problem.</p>
@@ -547,8 +566,8 @@
               <span class="tag">transformers</span>
               <span class="tag">pretraining</span>
             </div>
-          </article>
-          <article class="card">
+          </a>
+          <a class="card card-link" href="research/agentic-scientific-discovery/">
             <span class="meta">Next stage</span>
             <h3>Agentic Scientific Discovery</h3>
             <p>Designing systems that propose equations, call evaluators, fit coefficients, inspect feedback, and revise hypotheses.</p>
@@ -557,7 +576,7 @@
               <span class="tag">tool use</span>
               <span class="tag">validation loops</span>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -569,7 +588,7 @@
           <p>Current projects form a path from one-shot symbolic prediction toward iterative scientific-discovery systems.</p>
         </div>
         <div class="grid">
-          <article class="card">
+          <a class="card card-link" href="projects/foundpde/">
             <span class="meta">Current manuscript</span>
             <h3>FoundPDE</h3>
             <p>A generative foundation model for data-driven symbolic discovery of one-dimensional time-dependent PDEs. The model maps discretized solution trajectories to symbolic PDE expressions, then refines coefficients with BFGS.</p>
@@ -578,8 +597,8 @@
               <span class="tag">Fourier features</span>
               <span class="tag">coefficient refinement</span>
             </div>
-          </article>
-          <article class="card">
+          </a>
+          <a class="card card-link" href="projects/pdescientist/">
             <span class="meta">Dissertation direction</span>
             <h3>PDEScientist</h3>
             <p>An agentic PDE-discovery system where a model proposes candidate equations, analyzes data, calls evaluator tools, fits coefficients, and refines symbolic hypotheses over multiple turns.</p>
@@ -588,8 +607,8 @@
               <span class="tag">PDE evaluator</span>
               <span class="tag">hypothesis refinement</span>
             </div>
-          </article>
-          <article class="card">
+          </a>
+          <a class="card card-link" href="projects/pde-evaluation-loops/">
             <span class="meta">Research infrastructure</span>
             <h3>PDE Evaluation Loops</h3>
             <p>Benchmark and evaluator design for PDE discovery from raw solution data, including evaluator-owned targets, controlled feature namespaces, residual scoring, coefficient fitting, and trace-based failure analysis.</p>
@@ -598,7 +617,7 @@
               <span class="tag">residual NMSE</span>
               <span class="tag">rollout checks</span>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -610,17 +629,16 @@
           <p>Selected publications, manuscripts, and research documents. The newest work is centered on symbolic PDE discovery.</p>
         </div>
         <div class="publication-list">
-          <article class="publication">
+          <a class="publication publication-link" href="publications/foundpde/">
             <div>
               <span class="meta">Manuscript</span>
             </div>
             <div>
               <h3>FoundPDE: A generative foundation model for data-driven symbolic discovery of partial differential equations</h3>
               <p>Current manuscript on transformer-based data-to-symbol PDE discovery from spatiotemporal solution data, with coefficient refinement, sparse-data evaluation, few-shot adaptation, and step-by-step compositional discovery.</p>
-              <a href="https://scholar.google.com/citations?hl=en&amp;user=CQZcPZQAAAAJ">Google Scholar profile</a>
             </div>
-          </article>
-          <article class="publication">
+          </a>
+          <a class="publication publication-link" href="publications/prospectus/">
             <div>
               <span class="meta">Prospectus</span>
             </div>
@@ -628,17 +646,25 @@
               <h3>Symbolic PDE Discovery with Foundation Models and Agentic Scientific Discovery</h3>
               <p>Dissertation prospectus framing FoundPDE as the current foundation and PDEScientist as the next stage toward tool-using, evaluator-grounded scientific-discovery systems.</p>
             </div>
-          </article>
-          <article class="publication">
+          </a>
+          <a class="publication publication-link" href="publications/federated-sciml/">
+            <div>
+              <span class="meta">IEEE TNNLS 2025</span>
+            </div>
+            <div>
+              <h3>Federated Scientific Machine Learning for Approximating Functions and Solving Differential Equations With Data Heterogeneity</h3>
+              <p>Journal article on federated scientific machine learning for decentralized function approximation, physics-informed neural networks, and operator learning under data heterogeneity.</p>
+            </div>
+          </a>
+          <a class="publication publication-link" href="publications/multilingual-emotion/">
             <div>
               <span class="meta">WASSA 2023</span>
             </div>
             <div>
               <h3>Multilingual Language Models are not Multicultural: A Case Study in Emotion</h3>
               <p>Earlier work studying whether multilingual language models capture culturally specific emotional expression across languages.</p>
-              <a href="https://aclanthology.org/2023.wassa-1.19/">ACL Anthology</a>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
