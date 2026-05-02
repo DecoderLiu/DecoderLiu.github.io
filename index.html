@@ -117,9 +117,9 @@
       display: grid;
       grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.72fr);
       align-items: center;
-      gap: 56px;
-      min-height: 620px;
-      padding: 56px 0 64px;
+      gap: 48px;
+      min-height: 500px;
+      padding: 48px 0 56px;
     }
 
     .eyebrow {
@@ -144,24 +144,48 @@
     h1 {
       max-width: 840px;
       margin: 0;
-      font-size: clamp(3rem, 6vw, 5.6rem);
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
       line-height: 1;
       letter-spacing: 0;
     }
 
     .lede {
       max-width: 720px;
-      margin: 24px 0 0;
+      margin: 22px 0 0;
       color: #303847;
-      font-size: clamp(1.06rem, 1.8vw, 1.28rem);
+      font-size: clamp(1.04rem, 1.6vw, 1.18rem);
       line-height: 1.62;
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 8px;
+      max-width: 680px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .focus-list li {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      color: #303847;
+      line-height: 1.55;
+    }
+
+    .focus-list strong {
+      color: var(--amber);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 34px 0 0;
+      margin: 30px 0 0;
     }
 
     .button {
@@ -192,7 +216,7 @@
     .portrait-panel {
       position: relative;
       justify-self: end;
-      width: min(100%, 390px);
+      width: min(100%, 350px);
     }
 
     .portrait-card {
@@ -201,7 +225,6 @@
       border-radius: 8px;
       background: #ffffff;
       box-shadow: var(--shadow);
-      transform: rotate(1.25deg);
     }
 
     .portrait-card img {
@@ -226,8 +249,8 @@
 
     .status-card {
       position: absolute;
-      right: -26px;
-      bottom: 42px;
+      right: -18px;
+      bottom: 28px;
       width: 210px;
       padding: 16px;
       border: 1px solid rgba(20, 23, 31, 0.16);
@@ -247,7 +270,7 @@
     }
 
     section {
-      padding: 84px 0;
+      padding: 76px 0;
       border-top: 1px solid rgba(20, 23, 31, 0.1);
     }
 
@@ -270,8 +293,8 @@
     .section-head p {
       max-width: 780px;
       margin: 0;
-      font-size: clamp(1.35rem, 2.5vw, 2.25rem);
-      line-height: 1.18;
+      font-size: clamp(1.24rem, 2vw, 1.9rem);
+      line-height: 1.24;
     }
 
     .grid {
@@ -467,6 +490,11 @@
         padding-top: 42px;
       }
 
+      .focus-list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
       .portrait-panel {
         justify-self: start;
         width: min(100%, 340px);
@@ -517,6 +545,11 @@
           PDE discovery, foundation models for science, and agentic systems for
           scientific reasoning.
         </p>
+        <ul class="focus-list" aria-label="Current focus areas">
+          <li><strong>Current</strong><span>FoundPDE, a generative foundation model for symbolic PDE discovery.</span></li>
+          <li><strong>Next</strong><span>PDEScientist, an evaluator-guided system for iterative scientific discovery.</span></li>
+          <li><strong>Writing</strong><span>Research notes on scientific machine learning, optimization, and paper reading.</span></li>
+        </ul>
         <div class="actions" aria-label="Primary links">
           <a class="button primary" href="mailto:langchen.liu@yale.edu">Email</a>
           <a class="button" href="https://scholar.google.com/citations?hl=en&amp;user=CQZcPZQAAAAJ">Scholar</a>
