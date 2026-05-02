@@ -50,6 +50,50 @@ The key asymmetry is simple:
 
 That quadratic term is where covariance enters. If assets do not move perfectly together, a mixture can reduce variance without proportionally reducing expected return.
 
+## What does efficient mean?
+
+Once we care about both expected return and variance, there may not be one portfolio that is best in every sense. The ideal portfolio would have the highest possible expected return and the lowest possible variance at the same time. Sometimes that can happen, but usually it does not.
+
+The conflict is:
+
+$$
+\text{prefer larger } E
+\qquad\text{and}\qquad
+\text{prefer smaller } V.
+$$
+
+These two preferences define a partial order rather than a single scalar objective. One portfolio can clearly dominate another, but many portfolios may be incomparable.
+
+Say portfolio $X$ has return and variance
+
+$$
+(E_X,V_X),
+$$
+
+and another feasible portfolio $Y$ has
+
+$$
+(E_Y,V_Y).
+$$
+
+Portfolio $Y$ dominates portfolio $X$ if
+
+$$
+E_Y\ge E_X,\qquad V_Y\le V_X,
+$$
+
+and at least one of those two inequalities is strict. In words, $Y$ is at least as good on both dimensions and strictly better on one: it gives no less return with no more variance, or no more variance with strictly higher return.
+
+A portfolio is **efficient** if no feasible portfolio dominates it. Equivalently, $X$ is efficient if there is no other feasible $Y$ such that
+
+$$
+E_Y\ge E_X,\qquad V_Y\le V_X,
+$$
+
+with at least one strict improvement.
+
+This definition is the reason the efficient set is usually a frontier rather than a single point. Along the frontier, moving toward higher return usually requires accepting higher variance. Moving toward lower variance usually requires accepting lower return. Choosing one final portfolio from the efficient frontier requires an additional preference, such as a risk-aversion parameter, a target return, or a maximum acceptable variance.
+
 ## Three securities reduce to a triangle
 
 Markowitz's geometric figures use three securities. Since
