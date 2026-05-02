@@ -1332,3 +1332,10 @@ The old rule fails because expected return alone is a weighted average. It gives
 Mean-variance analysis adds the missing object: covariance. Once variance enters the decision, diversification can improve the portfolio because the covariance matrix determines whether risks offset each other.
 
 Once we measure risk with variance, the best portfolios are no longer simply the highest-return portfolios. They are the nondominated tradeoffs between return and risk. That is the core idea behind the efficient frontier.
+
+## References and notes
+
+- Markowitz, Harry M. "Portfolio Selection." *The Journal of Finance* 7, no. 1 (1952): 77-91. DOI: [10.2307/2975974](https://doi.org/10.2307/2975974).
+- Markowitz, Harry M. *Portfolio Selection: Efficient Diversification of Investments*. 1959. Book record available through [JSTOR](https://www.jstor.org/stable/j.ctt1bh4c8h).
+- The five geometry plots and the case-by-case algebra in this post are my own reconstruction from the accompanying Markowitz notebook. The notebook chooses each return vector $R$ and covariance matrix $\Sigma$ so the ellipse center, isomean lines, critical line, and efficient set produce the five cases shown above.
+- The hand-plot-style dominance illustration near the beginning of the post was generated with GPT-Image-2 for this blog post and is used as an explanatory visual, not as a source from Markowitz.
