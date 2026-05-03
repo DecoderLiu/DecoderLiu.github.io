@@ -292,7 +292,15 @@ If $z_0$ lies inside the triangle, the minimum-variance feasible portfolio is an
 
 The critical line is the part of the figure that took me the longest to internalize. It is not an extra constraint. It is the unconstrained path of tangency points between the isomean lines and the isovariance ellipses. Isovariance just means "same variance," so these are the black ellipse level curves from the previous section.
 
-Here is the intuition. Fix a target expected return $E^\star$. Among all points on that fixed-return line, we want the point with the smallest variance. Geometrically, that is where the fixed-return line first touches a variance ellipse. If the line cuts through an ellipse, then there are nearby points on the same return line with smaller variance. At the minimum-variance point for that return level, the return line is tangent to the variance ellipse.
+The sketch below is the picture I wish I had drawn earlier. The blue lines are equal-return lines. The black ellipses are equal-variance curves. The red dots are the points where a return line just touches a variance ellipse, and the red dashed path through those dots is the critical line.
+
+![Handwritten sketch of critical-line tangencies between isomean lines and variance ellipses](/assets/blog/markowitz/markowitz-critical-line-sketch.png)
+
+*AI-generated handwritten-style sketch, created for this post. The blue lines are fixed-return lines, the black ellipses are fixed-variance curves, and the red dots are the tangency points that form the critical line.*
+
+This is why the critical-line points are efficient in the unconstrained picture. If I start at the middle red point and ask for a higher return, I have to move to a higher blue line. The tangency point on that higher blue line sits on a larger ellipse, so the variance is higher. If instead I ask for lower variance, I have to move inward to a smaller ellipse. The tangency point there lies on a lower blue line, so the return is lower. Around the critical line, return and variance are trading off against each other rather than one point simply beating another.
+
+The calculation behind that picture is short. Fix a target expected return $E^\star$. Among all points on that fixed-return line, we want the point with the smallest variance. Geometrically, that is where the fixed-return line first touches a variance ellipse. If the line cuts through an ellipse, then there are nearby points on the same return line with smaller variance. At the minimum-variance point for that return level, the return line is tangent to the variance ellipse.
 
 In calculus terms, minimizing $V$ while holding $E$ fixed gives the condition
 
@@ -1399,4 +1407,4 @@ Once we measure risk with variance, the best portfolios are no longer simply the
 - Markowitz, Harry M. "Portfolio Selection." *The Journal of Finance* 7, no. 1 (1952): 77-91. DOI: [10.2307/2975974](https://doi.org/10.2307/2975974).
 - Markowitz, Harry M. *Portfolio Selection: Efficient Diversification of Investments*. 1959. Book record available through [JSTOR](https://www.jstor.org/stable/j.ctt1bh4c8h).
 - The five geometry plots and the case-by-case algebra in this post are my own reconstruction from the accompanying Markowitz notebook. The notebook chooses each return vector $R$ and covariance matrix $\Sigma$ so the ellipse center, isomean lines, critical line, and efficient set produce the five cases shown above.
-- The handwritten two-stage sketch and the hand-plot-style dominance illustration were generated with GPT-Image-2 for this blog post. They are explanatory visuals, not figures from Markowitz.
+- The handwritten two-stage sketch, the critical-line sketch, and the hand-plot-style dominance illustration were AI-generated for this blog post. They are explanatory visuals, not figures from Markowitz.
