@@ -5,13 +5,11 @@ description: "A worked reading note on Markowitz's three-security geometry, with
 category_label: "Reading note"
 ---
 
-I am new to quantitative finance, so I wanted my first topic to be something basic enough to be foundational but still mathematical enough to be interesting. Portfolio optimization felt like the right starting point. It is one of those phrases I had heard many times, but I did not really know what the first principles looked like.
+I am new to quantitative finance, and I wanted to start with something foundational but still mathematical. Portfolio optimization felt like the right first topic. I had heard the phrase many times, but I did not really know what the first principles looked like.
 
-That led me to Markowitz's 1952 paper, *Portfolio Selection*. It is short, and I expected it to be more historical than useful. Instead, I found it surprisingly alive. The paper is not just saying "diversify because diversification is good." It shows, with a small geometric picture, why return alone is the wrong objective.
+That led me to Markowitz's 1952 paper, *Portfolio Selection*. I expected a short historical paper. What I found was a surprisingly visual argument: in the three-security case, return becomes a family of straight lines, variance becomes a family of ellipses, and the feasible portfolios sit inside a triangle.
 
-The part that caught me was the three-security case. The whole problem can be drawn on a page: straight lines for return, ellipses for variance, and a triangle for the portfolios we are allowed to hold. Once I saw that picture, the slogan became much more concrete. "Choose the highest return" sounds reasonable until risk is drawn on the same figure. Then the rule starts to look incomplete.
-
-This post is my worked reading note. I am not trying to write a finance textbook. I am trying to record the path from "I have heard of portfolio optimization" to "I can see what Markowitz is doing in the geometry."
+This post is my worked reading note. I am not trying to write a finance textbook. I am trying to record how the geometry made the usual diversification story feel concrete.
 
 Markowitz separates portfolio selection into two stages. First, we form beliefs about the securities: their expected returns, their variances, and how they move together. Then we use those beliefs to choose portfolio weights. The paper mostly studies the second stage. It asks: if we already have expected returns and covariances, how should we choose the portfolio?
 
