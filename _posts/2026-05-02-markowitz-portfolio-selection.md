@@ -13,48 +13,37 @@ The part that caught me was the three-security case. The whole problem can be dr
 
 This post is my worked reading note. I am not trying to write a finance textbook. I am trying to record the path from "I have heard of portfolio optimization" to "I can see what Markowitz is doing in the geometry."
 
-The paper separates portfolio selection into two stages:
+Markowitz separates portfolio selection into two stages. First, we form beliefs about the securities: their expected returns, their variances, and how they move together. Then we use those beliefs to choose portfolio weights. The paper mostly studies the second stage. It asks: if we already have expected returns and covariances, how should we choose the portfolio?
 
-$$
-\text{data and judgment} \rightarrow \text{return and covariance estimates} \rightarrow \text{portfolio weights}.
-$$
+![Handwritten sketch of Markowitz's two-stage portfolio-selection setup](/assets/blog/markowitz/markowitz-two-stage-sketch.png)
 
-The first stage forms beliefs about future security returns. The second stage turns those beliefs into portfolio weights. Markowitz mostly studies the second stage. He asks: if we already have expected returns and covariances, how should we choose the portfolio?
+*AI-generated handwritten-style sketch, created with GPT-Image-2 for this post. It is my visual summary of the two-stage setup, not a figure from Markowitz.*
 
-Here is the notation I use below.
-
-- $n$ is the number of securities, and $i$ indexes one of them.
-- $R_i$ is the anticipated return of security $i$.
-- $X_i$ is the portfolio weight in security $i$, meaning the fraction of wealth invested in that security.
-- $R=(R_1,\ldots,R_n)^\top$ is the vector of anticipated returns.
-- $X=(X_1,\ldots,X_n)^\top$ is the vector of portfolio weights.
-- $\Sigma$ is the covariance matrix of security returns. Its diagonal entries are variances, and its off-diagonal entries are covariances.
-- $E$ is portfolio expected return.
-- $V$ is portfolio variance. In this post, variance is the mathematical version of risk.
+I use Markowitz-style notation below. Suppose there are $n$ securities, and let $i$ index one of them. The anticipated return of security $i$ is $R_i$, and the portfolio weight in that security is $X_i$, meaning the fraction of wealth invested there. I write the return vector as $R=(R_1,\ldots,R_n)^\top$ and the weight vector as $X=(X_1,\ldots,X_n)^\top$. The covariance matrix is $\Sigma$; its diagonal entries are variances, and its off-diagonal entries are covariances. I use $E$ for portfolio expected return and $V$ for portfolio variance. In this post, variance is the mathematical version of risk.
 
 The main question is: which weights $X$ are worth considering once we care about both return and risk?
 
 ## Why return alone is not enough
 
-The older rule that Markowitz pushes against says: maximize anticipated return. If the portfolio return is called $R_p$, then
+The tempting first rule is simple: choose the portfolio with the largest anticipated return. This is the rule Markowitz pushes against. If the portfolio return is called $R_p$, then
 
 $$
 R_p=\sum_i X_iR_i.
 $$
 
-I am assuming the same simple portfolio constraint used in the geometric examples: no short selling and all wealth invested. That is,
+For now, I am assuming the same simple constraint used in the geometric examples: no short selling and all wealth invested. That is,
 
 $$
 \sum_i X_i=1,\qquad X_i\ge 0,
 $$
 
-$R_p$ is a weighted average. If $R_m=\max_i R_i$, then every $R_i\le R_m$, so
+This means $R_p$ is only a weighted average. If the best individual anticipated return is $R_m=\max_i R_i$, then every $R_i\le R_m$, so
 
 $$
 R_p=\sum_i X_iR_i\le \sum_i X_iR_m=R_m.
 $$
 
-So a return-only rule either puts everything into the single highest-return security, or is indifferent among securities tied for highest return. It has no mathematical reason to prefer diversification.
+This is the problem. A return-only rule either puts everything into the single highest-return security, or it is indifferent among securities tied for highest return. There is no place in the rule where diversification can enter.
 
 Markowitz's replacement is to consider return and variance together:
 
@@ -64,26 +53,13 @@ $$
 
 Here $R^\top X$ is the same weighted-average return as above, just written in vector notation. The variance formula $X^\top\Sigma X$ is different. It contains all pairwise covariance terms through $\Sigma$.
 
-This is the asymmetry I want to keep in view:
-
-- $E$ is linear in $X$.
-- $V$ is quadratic in $X$.
-
-That quadratic term is where diversification enters the math. If assets do not move perfectly together, a mixture can reduce variance without giving up return in the same proportion. A return-only rule cannot see this. A mean-variance rule can.
+This is the asymmetry I want to keep in view: expected return is linear in the weights, while variance is quadratic in the weights. That quadratic term is where diversification enters the math. If assets do not move perfectly together, a mixture can reduce variance without giving up return in the same proportion. A return-only rule cannot see this. A mean-variance rule can.
 
 ## What does efficient mean?
 
-Once we care about both expected return and variance, there may not be one portfolio that is best in every sense. The dream portfolio would have the highest possible expected return and the lowest possible variance at the same time. Nice if it happens. But usually it does not.
+Once return and variance are both in the picture, I cannot just ask for "the best" portfolio without saying what best means. Of course I would like more expected return. Of course I would like less variance. But these two wishes can point in different directions.
 
-The conflict is:
-
-$$
-\text{prefer larger } E
-\qquad\text{and}\qquad
-\text{prefer smaller } V.
-$$
-
-These two preferences define a partial order rather than a single scalar objective. Some comparisons are easy, but many are not. If one portfolio has higher return and lower variance, we clearly prefer it. If one portfolio has higher return and also higher variance, the math alone has not chosen for us. We need a risk preference.
+Some comparisons are still easy. If one portfolio gives the same return with lower variance, I would rather hold that one. If it gives higher return with the same variance, I would rather hold that one too. The hard cases are the tradeoffs: higher return and higher variance, or lower variance and lower return. At that point the math has not chosen for us. We need a risk preference.
 
 Say portfolio $X$ has return and variance
 
@@ -115,13 +91,72 @@ with at least one strict improvement.
 
 This definition is why the efficient set is usually a frontier rather than a single point. Along the frontier, moving toward higher return usually means accepting higher variance. Moving toward lower variance usually means accepting lower return. Markowitz gives us the set of reasonable candidates; choosing one final portfolio still requires one more choice, such as a risk-aversion parameter, a target return, or a maximum acceptable variance.
 
-Here is a small example:
+Here is a tiny example.
 
-| Portfolio | Expected return | Variance |
-| --- | ---: | ---: |
-| A | 10% | 0.09 |
-| B | 8% | 0.04 |
-| C | 10% | 0.04 |
+<style>
+  .booktabs-table {
+    width: min(100%, 560px);
+    margin: 22px 0 26px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .booktabs-table caption {
+    caption-side: top;
+    margin-bottom: 8px;
+    color: #59616f;
+    font-size: 0.94rem;
+    text-align: left;
+  }
+
+  .booktabs-table thead {
+    border-top: 2px solid #14171f;
+    border-bottom: 1px solid #14171f;
+  }
+
+  .booktabs-table tbody {
+    border-bottom: 2px solid #14171f;
+  }
+
+  .booktabs-table th,
+  .booktabs-table td {
+    padding: 9px 12px;
+    text-align: right;
+  }
+
+  .booktabs-table th:first-child,
+  .booktabs-table td:first-child {
+    text-align: left;
+  }
+</style>
+
+<table class="booktabs-table">
+  <caption>Three hypothetical portfolios.</caption>
+  <thead>
+    <tr>
+      <th scope="col">Portfolio</th>
+      <th scope="col">Expected return</th>
+      <th scope="col">Variance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>10%</td>
+      <td>0.09</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>8%</td>
+      <td>0.04</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>10%</td>
+      <td>0.04</td>
+    </tr>
+  </tbody>
+</table>
 
 Portfolio C dominates portfolio A because it has the same return and lower variance. C also dominates B because it has the same variance and higher return. But A and B are not directly comparable: A has higher return, while B has lower variance. A reader who wants return may prefer A; a reader who hates risk may prefer B. This is why Markowitz does not simply produce one universally best portfolio without saying anything about risk preference.
 
@@ -1366,4 +1401,4 @@ Once we measure risk with variance, the best portfolios are no longer simply the
 - Markowitz, Harry M. "Portfolio Selection." *The Journal of Finance* 7, no. 1 (1952): 77-91. DOI: [10.2307/2975974](https://doi.org/10.2307/2975974).
 - Markowitz, Harry M. *Portfolio Selection: Efficient Diversification of Investments*. 1959. Book record available through [JSTOR](https://www.jstor.org/stable/j.ctt1bh4c8h).
 - The five geometry plots and the case-by-case algebra in this post are my own reconstruction from the accompanying Markowitz notebook. The notebook chooses each return vector $R$ and covariance matrix $\Sigma$ so the ellipse center, isomean lines, critical line, and efficient set produce the five cases shown above.
-- The hand-plot-style dominance illustration near the beginning of the post was generated with GPT-Image-2 for this blog post and is used as an explanatory visual, not as a source from Markowitz.
+- The handwritten two-stage sketch and the hand-plot-style dominance illustration were generated with GPT-Image-2 for this blog post. They are explanatory visuals, not figures from Markowitz.
