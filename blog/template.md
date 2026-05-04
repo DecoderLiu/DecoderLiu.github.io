@@ -3,9 +3,13 @@ layout: post
 title: "POST TITLE"
 description: "One-sentence summary shown on the blog index and in search previews."
 category_label: "Research Note"
+date: 2026-05-02
+updated: 2026-05-02
 ---
 
 Start with the question the post is trying to answer. A good first paragraph should tell the reader what problem you were thinking about and why it is worth reading the note.
+
+Replace `date` and `updated` in the front matter before publishing. When you first create a post, they can be the same day.
 
 ## Setup
 

@@ -4,6 +4,7 @@ title: "How to Write a Blog Post"
 description: "The practical workflow for adding a new post to this GitHub Pages site."
 category_label: "Guide"
 date: 2026-05-01
+updated: 2026-05-01
 permalink: /blog/how-to-write/
 ---
 
@@ -34,10 +35,12 @@ layout: post
 title: "Readable Post Title"
 description: "One sentence for the blog index."
 category_label: "Research Note"
+date: 2026-05-02
+updated: 2026-05-02
 ---
 ```
 
-Keep the description concrete. It appears on the blog index, so it should tell a reader what the post is about without opening the page.
+Keep the description concrete. It appears on the blog index, so it should tell a reader what the post is about without opening the page. Set `updated` to the same day as `date` when you first publish the post, then change `updated` when you make a meaningful revision later.
 
 ## Basic Markdown
 

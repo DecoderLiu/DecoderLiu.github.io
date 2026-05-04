@@ -164,7 +164,8 @@ title: Blog
       <section class="post-list" aria-label="Blog posts">
         {% for post in site.posts %}
         <article class="post-card">
-          <span class="meta">{{ post.category_label | default: "Note" }} · {{ post.date | date: "%B %Y" }}</span>
+          {% assign post_updated = post.updated | default: post.date %}
+          <span class="meta">{{ post.category_label | default: "Note" }} · Published {{ post.date | date: "%B %-d, %Y" }} · Updated {{ post_updated | date: "%B %-d, %Y" }}</span>
           <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
           <p>
             {{ post.description }}

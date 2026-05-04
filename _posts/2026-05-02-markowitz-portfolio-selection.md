@@ -3,6 +3,8 @@ layout: post
 title: "Reading Markowitz 1952 Through Geometry"
 description: "A worked reading note on Markowitz's three-security geometry, with the notation spelled out and an interactive widget for changing returns and covariances."
 category_label: "Reading note"
+date: 2026-05-02
+updated: 2026-05-02
 ---
 
 I am new to quantitative finance, and I wanted to start with something foundational but still mathematical. Portfolio optimization felt like the right first topic. I had heard the phrase many times, but I did not really know what the first principles looked like.

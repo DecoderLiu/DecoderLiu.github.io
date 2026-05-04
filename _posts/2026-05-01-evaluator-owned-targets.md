@@ -3,6 +3,8 @@ layout: post
 title: "Evaluator-Owned Targets in PDE Discovery"
 description: "A short explanation of why a PDE-discovery agent should propose equations while the evaluator owns targets, features, and residual scoring."
 category_label: "Technical note"
+date: 2026-05-01
+updated: 2026-05-01
 ---
 
 A tempting design is to ask an agent to write a candidate PDE and also write the code that evaluates it. That looks flexible, but it quietly creates a loophole: the same system being evaluated can decide what counts as the target residual. If the target is wrong, the score can look good for the wrong reason.
