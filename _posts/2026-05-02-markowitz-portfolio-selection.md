@@ -4,7 +4,7 @@ title: "Reading Markowitz 1952 Through Geometry"
 description: "A worked reading note on Markowitz's three-security geometry, with the notation spelled out and an interactive widget for changing returns and covariances."
 category_label: "Reading note"
 date: 2026-05-02
-updated: 2026-05-02
+updated: 2026-05-06
 ---
 
 I am new to quantitative finance, and I wanted to start with something foundational but still mathematical. Portfolio optimization felt like the right first topic. I had heard the phrase many times, but I did not really know what the first principles looked like.
@@ -865,6 +865,134 @@ The direction points even farther toward security 1 and away from security 2. Wi
 
 ![Exercise case where only one portfolio is efficient](/assets/blog/markowitz/markowitz-case3-single-efficient-portfolio.png)
 
+## What about $N$ securities?
+
+The five drawings above are all three-security pictures. That made me wonder whether the triangle was doing too much work. Maybe the result is only visually nice because three weights can be reduced to two coordinates.
+
+Markowitz's answer is no. In the four-security case the feasible set becomes a tetrahedron, and in the $N$-security case it becomes a higher-dimensional simplex. The picture is harder to draw, but the structure is the same: in portfolio-weight space, efficient portfolios are connected line segments.
+
+The sketch below is my redraw of the idea behind Markowitz's Figures 4, 5, and 6. The first panel is the four-security version: efficient portfolios move along straight pieces in the tetrahedron. The second panel shows what happens when those same portfolio weights are lifted into the $E$ and $V$ views. The third panel shows the resulting efficient combinations in the $(E,V)$ plane. The line segments in weight space become curved pieces in the $(E,V)$ plane because variance is quadratic.
+
+![Handwritten sketches of Markowitz's N-security line-segment idea and the induced E-V curve](/assets/blog/markowitz/markowitz-n-security-line-segments.png)
+
+*AI-generated hand-plot-style sketch, inspired by the ideas in Markowitz's Figures 4-6. It is a simplified explanatory redraw, not a reproduction from the paper.*
+
+Here is the proof in the notation I find easiest to remember. Suppose there are $N$ securities. A long-only portfolio is a vector $x\in\mathbb{R}^N$ satisfying
+
+$$
+\mathbf{1}^\top x=1,\qquad x_i\ge 0.
+$$
+
+The expected return and variance are
+
+$$
+E(x)=\mu^\top x,\qquad V(x)=x^\top\Sigma x,
+$$
+
+where $\mu$ is the vector of expected returns and $\Sigma$ is the covariance matrix. To trace the efficient set, fix a target return $e$ and ask for the minimum-variance portfolio that reaches that return:
+
+$$
+\min_x\; x^\top\Sigma x
+$$
+
+subject to
+
+$$
+\mathbf{1}^\top x=1,\qquad \mu^\top x=e,\qquad x_i\ge 0.
+$$
+
+The only annoying part is the inequality $x_i\ge 0$. Markowitz's geometric trick is to handle it face by face. Fix an active set $A$, meaning the securities whose weights are currently positive. On that face of the simplex, the inactive securities have weight zero and the active weights satisfy
+
+$$
+\mathbf{1}_A^\top x_A=1,\qquad x_i>0\quad(i\in A).
+$$
+
+For the moment, stay inside this face and ignore the possibility that a weight might hit zero. The first-order condition for the equality-constrained minimum has the form
+
+$$
+2\Sigma_{AA}x_A=\alpha \mathbf{1}_A+\beta\mu_A,
+$$
+
+where $\alpha$ and $\beta$ are the multipliers for the budget constraint and the target-return constraint. If $\Sigma_{AA}$ is nonsingular, then
+
+$$
+x_A=\frac{1}{2}\Sigma_{AA}^{-1}(\alpha\mathbf{1}_A+\beta\mu_A).
+$$
+
+The two numbers $\alpha$ and $\beta$ are chosen so that
+
+$$
+\mathbf{1}_A^\top x_A=1,\qquad \mu_A^\top x_A=e.
+$$
+
+These are two linear equations whose right-hand side is $(1,e)$. Therefore $\alpha$ and $\beta$ change linearly with $e$, and so $x_A$ also changes linearly with $e$. In other words, while the active set stays fixed,
+
+$$
+x_A(e)=a_A+e\,b_A
+$$
+
+for two fixed vectors $a_A$ and $b_A$. That is the line-segment result.
+
+The segment does not continue forever. It is valid only while all active weights remain positive:
+
+$$
+x_i(e)>0,\qquad i\in A.
+$$
+
+When one active weight reaches zero, the path hits a boundary face. Then that security drops out, the active set changes, and the same argument starts again on the smaller face. This is why the efficient portfolios form a chain:
+
+$$
+\text{line segment}\;\to\;\text{line segment}\;\to\;\text{line segment}\;\to\cdots
+$$
+
+This also explains the difference between weight space and the $(E,V)$ plane. Along one segment, $x(e)=a+e b$. Expected return is already $e$, but variance becomes
+
+$$
+V(e)
+=(a+eb)^\top\Sigma(a+eb)
+=a^\top\Sigma a+2e\,b^\top\Sigma a+e^2 b^\top\Sigma b.
+$$
+
+So the same straight segment in portfolio-weight space becomes a parabola segment when plotted as variance against expected return. That small point helped me reconcile Markowitz's language: efficient portfolios are line segments, while efficient $(E,V)$ combinations are connected parabola pieces.
+
+## Why mixing two portfolios can lower variance
+
+Markowitz makes one more geometric point after this, and I think it deserves its own short note. If two portfolios have the same variance, then mixing them usually gives a portfolio with lower variance. This is the idea behind his Figure 7.
+
+![Handwritten sketch of mixing two equal-variance portfolios to move inside a smaller variance ellipse](/assets/blog/markowitz/markowitz-portfolio-mix-convexity.png)
+
+*AI-generated hand-plot-style sketch, inspired by the idea in Markowitz's Figure 7. The point $P$ is a mixture of $P'$ and $P''$, and it falls inside a smaller isovariance curve.*
+
+The algebra is only one line. Let $p$ and $q$ be two portfolios with the same variance,
+
+$$
+V(p)=V(q)=v.
+$$
+
+For $0\le\lambda\le 1$, form the mixed portfolio
+
+$$
+m_\lambda=\lambda p+(1-\lambda)q.
+$$
+
+Because $V(x)=x^\top\Sigma x$ is a convex quadratic form,
+
+$$
+V(m_\lambda)
+=\lambda V(p)+(1-\lambda)V(q)
+-\lambda(1-\lambda)(p-q)^\top\Sigma(p-q).
+$$
+
+Substituting $V(p)=V(q)=v$ gives
+
+$$
+V(m_\lambda)
+=v-\lambda(1-\lambda)(p-q)^\top\Sigma(p-q)
+\le v.
+$$
+
+So the mixed portfolio cannot have higher variance than the two endpoints. It is usually strictly lower; equality happens only in a degenerate case where the difference $p-q$ carries no variance under $\Sigma$. Geometrically, that is why the line between two points on the same isovariance ellipse cuts inward through smaller ellipses.
+
 ## Interactive reconstruction
 
 Use the preset menu to recreate the five notebook plots. Then edit $R$ or the symmetric matrix $\Sigma$ directly.
@@ -1409,4 +1537,4 @@ Once we measure risk with variance, the best portfolios are no longer simply the
 - Markowitz, Harry M. "Portfolio Selection." *The Journal of Finance* 7, no. 1 (1952): 77-91. DOI: [10.2307/2975974](https://doi.org/10.2307/2975974).
 - Markowitz, Harry M. *Portfolio Selection: Efficient Diversification of Investments*. 1959. Book record available through [JSTOR](https://www.jstor.org/stable/j.ctt1bh4c8h).
 - The five geometry plots and the case-by-case algebra in this post are my own reconstruction from the accompanying Markowitz notebook. The notebook chooses each return vector $R$ and covariance matrix $\Sigma$ so the ellipse center, isomean lines, critical line, and efficient set produce the five cases shown above.
-- The handwritten two-stage sketch, the critical-line sketch, and the hand-plot-style dominance illustration were AI-generated for this blog post. They are explanatory visuals, not figures from Markowitz.
+- The handwritten two-stage sketch, the critical-line sketch, the hand-plot-style dominance illustration, the $N$-security line-segment plate, and the portfolio-mix convexity sketch were AI-generated for this blog post. They are explanatory visuals, not figures from Markowitz.
