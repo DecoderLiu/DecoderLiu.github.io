@@ -1398,9 +1398,9 @@ A good way to use the widget:
 
 In fact, similar thoughts apply to the $N$-security case. The three-security triangle is only the easiest version to draw. With four securities, the feasible set becomes a tetrahedron. With $N$ securities, it becomes a higher-dimensional simplex. The core result is the same: efficient portfolios are connected line segments in portfolio-weight space.
 
-![Handwritten sketches of Markowitz's N-security line-segment idea and the induced E-V curve](/assets/blog/markowitz/markowitz-n-security-line-segments.png)
+![Handwritten sketches of Markowitz's N-security line-segment idea and the induced E-V curve](/assets/blog/markowitz/markowitz-n-security-line-segments-v2.png)
 
-*AI-generated hand-plot-style sketch, inspired by the ideas in Markowitz's Figures 4-6. It is a simplified explanatory redraw, not a reproduction from the paper.*
+*Hand-plot-style sketch, inspired by the ideas in Markowitz's Figures 4-6. I redrew it for this post to keep the axes, triangle, and line segments geometrically controlled; it is not a reproduction from the paper.*
 
 Here is the proof in the notation I find easiest to remember. Suppose there are $N$ securities. A long-only portfolio is a vector $x\in\mathbb{R}^N$ satisfying
 
@@ -1533,4 +1533,4 @@ Once we measure risk with variance, the best portfolios are no longer simply the
 - Markowitz, Harry M. "Portfolio Selection." *The Journal of Finance* 7, no. 1 (1952): 77-91. DOI: [10.2307/2975974](https://doi.org/10.2307/2975974).
 - Markowitz, Harry M. *Portfolio Selection: Efficient Diversification of Investments*. 1959. Book record available through [JSTOR](https://www.jstor.org/stable/j.ctt1bh4c8h).
 - The five geometry plots and the case-by-case algebra in this post are my own reconstruction from the accompanying Markowitz notebook. The notebook chooses each return vector $R$ and covariance matrix $\Sigma$ so the ellipse center, isomean lines, critical line, and efficient set produce the five cases shown above.
-- The handwritten two-stage sketch, the critical-line sketch, the hand-plot-style dominance illustration, the $N$-security line-segment plate, and the portfolio-mix convexity sketch were AI-generated for this blog post. They are explanatory visuals, not figures from Markowitz.
+- The handwritten two-stage sketch, the critical-line sketch, the hand-plot-style dominance illustration, and the portfolio-mix convexity sketch were AI-generated for this blog post. The $N$-security line-segment plate was redrawn as a controlled hand-plot-style diagram. These are explanatory visuals, not figures from Markowitz.
