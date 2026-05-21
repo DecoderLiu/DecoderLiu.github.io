@@ -10,6 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://decoderliu.github.io/">
   <meta property="og:image" content="https://decoderliu.github.io/assets/langchen-liu.jpg">
+  <link rel="stylesheet" href="assets/interactive-studio.css">
   <style>
     :root {
       color-scheme: light;
@@ -524,6 +525,7 @@
         <span>Langchen Liu</span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="#studio">Studio</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
         <a href="#publications">Publications</a>
@@ -572,6 +574,128 @@
         </div>
       </aside>
     </div>
+
+    <section id="studio" data-studio>
+      <div class="shell">
+        <div class="section-head">
+          <h2>Studio</h2>
+          <p>Small interactive sketches for a personal research site: quiet, cursor-aware, and tied to the work rather than decoration alone.</p>
+        </div>
+        <div class="studio-grid">
+          <div class="studio-intro studio-reveal">
+            <p class="studio-kicker">Interactive research desk</p>
+            <h2>Moving details that feel like a working notebook.</h2>
+            <p>
+              This section tests a few directions at once: a portrait that reacts
+              to light, a research constellation, a paper stack, tiny simulations,
+              a Markowitz-style frontier, and a paper companion whose eyes follow
+              the pointer.
+            </p>
+          </div>
+
+          <div class="studio-portrait studio-reveal" data-cursor-card>
+            <img src="assets/langchen-liu.jpg" alt="Langchen Liu">
+            <span class="studio-portrait__ring" aria-hidden="true"></span>
+          </div>
+
+          <div class="studio-companion studio-reveal" data-cursor-card aria-label="Cursor-following paper companion">
+            <svg viewBox="0 0 240 180" role="img" aria-labelledby="paper-companion-title">
+              <title id="paper-companion-title">A paper-like companion whose eyes follow the cursor</title>
+              <path class="studio-paper-shape" d="M44 38h112l40 40v76H44z" />
+              <path class="studio-fold" d="M156 38v40h40" />
+              <path class="studio-ear" d="M58 39 78 16l19 22" />
+              <path class="studio-ear" d="M128 38 151 15l14 25" />
+              <circle cx="93" cy="90" r="18" class="studio-eye" />
+              <circle cx="143" cy="90" r="18" class="studio-eye" />
+              <circle cx="93" cy="90" r="6" class="studio-pupil" data-eye />
+              <circle cx="143" cy="90" r="6" class="studio-pupil" data-eye />
+              <path class="studio-smile" d="M107 120c10 9 24 9 34 0" />
+              <path class="studio-line" d="M70 137h102" />
+            </svg>
+          </div>
+
+          <div class="studio-constellation studio-reveal" data-cursor-card>
+            <div class="studio-panel-title">
+              <span>Research constellation</span>
+              <small>hover to pull nearby ideas</small>
+            </div>
+            <svg viewBox="0 0 520 300" data-constellation aria-label="Interactive research topic constellation">
+              <line x1="102" y1="88" x2="243" y2="132" />
+              <line x1="243" y1="132" x2="394" y2="76" />
+              <line x1="243" y1="132" x2="338" y2="220" />
+              <line x1="162" y1="222" x2="243" y2="132" />
+              <line x1="162" y1="222" x2="338" y2="220" />
+              <g data-node data-x="102" data-y="88"><circle r="14" /><text>PDE</text></g>
+              <g data-node data-x="243" data-y="132"><circle r="18" /><text>Scientific ML</text></g>
+              <g data-node data-x="394" data-y="76"><circle r="14" /><text>Symbolic</text></g>
+              <g data-node data-x="162" data-y="222"><circle r="14" /><text>Quant</text></g>
+              <g data-node data-x="338" data-y="220"><circle r="14" /><text>Agents</text></g>
+            </svg>
+          </div>
+
+          <div class="studio-equations studio-reveal" data-cursor-card>
+            <div class="studio-panel-title">
+              <span>Equation ink</span>
+              <small>terms settle on scroll</small>
+            </div>
+            <p><span>E(R_p)=w^T mu</span></p>
+            <p><span>V(R_p)=w^T Sigma w</span></p>
+            <p><span>L(u, grad u, grad^2 u)=0</span></p>
+            <p><span>f* = arg min_f E(f)</span></p>
+          </div>
+
+          <div class="studio-stack studio-reveal" data-cursor-card>
+            <div class="studio-panel-title">
+              <span>Paper stack</span>
+              <small>hover to lift a page</small>
+            </div>
+            <a class="studio-paper" href="#publications">
+              <strong>Publications</strong>
+              <span>papers, preprints, and research documents</span>
+            </a>
+            <a class="studio-paper" href="#projects">
+              <strong>Projects</strong>
+              <span>systems, notebooks, experiments</span>
+            </a>
+            <a class="studio-paper" href="#blog">
+              <strong>Blog</strong>
+              <span>learning logs and derivations</span>
+            </a>
+          </div>
+
+          <div class="studio-frontier studio-reveal" data-cursor-card>
+            <div class="studio-panel-title">
+              <span>Cursor-following frontier</span>
+              <small>risk and return move together</small>
+            </div>
+            <canvas width="520" height="260" data-frontier></canvas>
+            <div class="studio-frontier__readout">
+              <span>risk <b data-risk>0.42</b></span>
+              <span>return <b data-return>0.68</b></span>
+            </div>
+          </div>
+
+          <div class="studio-bench studio-reveal">
+            <div class="studio-panel-title">
+              <span>Lab bench</span>
+              <small>micro-simulations by route</small>
+            </div>
+            <a class="studio-tool" href="#blog">
+              <canvas width="96" height="58" data-spark="wave"></canvas>
+              <span>Notes</span>
+            </a>
+            <a class="studio-tool" href="#projects">
+              <canvas width="96" height="58" data-spark="tree"></canvas>
+              <span>Projects</span>
+            </a>
+            <a class="studio-tool" href="#publications">
+              <canvas width="96" height="58" data-spark="curve"></canvas>
+              <span>Papers</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="research">
       <div class="shell">
@@ -791,6 +915,7 @@
   <footer>
     <div class="shell">© 2026 Langchen Liu. Built with static HTML and GitHub Pages.</div>
   </footer>
+  <script src="assets/interactive-studio.js"></script>
   <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=NV5OJQqxRJ-1OQaeWq4QN3sXvHezaIpOC1g7oD4OjtM&cl=ffffff&w=a"></script>
 </body>
 </html>
