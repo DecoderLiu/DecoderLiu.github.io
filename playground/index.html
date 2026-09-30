@@ -1,0 +1,134 @@
+---
+layout: page
+title: Playground
+area: playground
+description: "Interactive sketches, small simulations, and a research desk to explore."
+studio: true
+---
+
+<section id="studio" data-studio>
+  <div class="shell">
+    <div class="studio-grid">
+      <div class="studio-intro studio-reveal">
+        <p class="studio-kicker">Interactive research desk</p>
+        <h2>Moving details that feel like a working notebook.</h2>
+        <p>
+          This section tests a few directions at once: a portrait that reacts
+          to light, a research constellation, a paper stack, tiny simulations,
+          a Markowitz-style frontier, and a paper companion whose eyes follow
+          the pointer.
+        </p>
+      </div>
+
+      <div class="studio-portrait studio-reveal" data-cursor-card>
+        <img src="{{ '/assets/langchen-liu.jpg' | relative_url }}" alt="Langchen Liu">
+        <span class="studio-portrait__ring" aria-hidden="true"></span>
+      </div>
+
+      <div class="studio-companion studio-reveal" data-cursor-card aria-label="Cursor-following paper companion">
+        <svg viewBox="0 0 240 180" role="img" aria-labelledby="paper-companion-title">
+          <title id="paper-companion-title">A paper-like companion whose eyes follow the cursor</title>
+          <path class="studio-paper-shape" d="M44 38h112l40 40v76H44z" />
+          <path class="studio-fold" d="M156 38v40h40" />
+          <path class="studio-ear" d="M58 39 78 16l19 22" />
+          <path class="studio-ear" d="M128 38 151 15l14 25" />
+          <circle cx="93" cy="90" r="18" class="studio-eye" />
+          <circle cx="143" cy="90" r="18" class="studio-eye" />
+          <circle cx="93" cy="90" r="6" class="studio-pupil" data-eye />
+          <circle cx="143" cy="90" r="6" class="studio-pupil" data-eye />
+          <path class="studio-smile" d="M107 120c10 9 24 9 34 0" />
+          <path class="studio-line" d="M70 137h102" />
+        </svg>
+      </div>
+
+      <div class="studio-constellation studio-reveal" data-cursor-card>
+        <div class="studio-panel-title">
+          <span>Research constellation</span>
+          <small>hover to pull nearby ideas</small>
+        </div>
+        <svg viewBox="0 0 520 300" data-constellation aria-label="Interactive research topic constellation">
+          <line x1="102" y1="88" x2="243" y2="132" />
+          <line x1="243" y1="132" x2="394" y2="76" />
+          <line x1="243" y1="132" x2="338" y2="220" />
+          <line x1="162" y1="222" x2="243" y2="132" />
+          <line x1="162" y1="222" x2="338" y2="220" />
+          <g data-node data-x="102" data-y="88" transform="translate(102 88)"><circle r="14" /><text>PDE</text></g>
+          <g data-node data-x="243" data-y="132" transform="translate(243 132)"><circle r="18" /><text>Scientific ML</text></g>
+          <g data-node data-x="394" data-y="76" transform="translate(394 76)"><circle r="14" /><text>Symbolic</text></g>
+          <g data-node data-x="162" data-y="222" transform="translate(162 222)"><circle r="14" /><text>Quant</text></g>
+          <g data-node data-x="338" data-y="220" transform="translate(338 220)"><circle r="14" /><text>Agents</text></g>
+        </svg>
+      </div>
+
+      <div class="studio-equations studio-reveal" data-cursor-card>
+        <div class="studio-panel-title">
+          <span>Equation ink</span>
+          <small>terms settle on scroll</small>
+        </div>
+        <p><span>E(R_p)=w^T mu</span></p>
+        <p><span>V(R_p)=w^T Sigma w</span></p>
+        <p><span>L(u, grad u, grad^2 u)=0</span></p>
+        <p><span>f* = arg min_f E(f)</span></p>
+      </div>
+
+      <div class="studio-stack studio-reveal" data-cursor-card>
+        <div class="studio-panel-title">
+          <span>Paper stack</span>
+          <small>hover to lift a page</small>
+        </div>
+        <a class="studio-paper" href="{{ '/academic/' | relative_url }}#publications">
+          <strong>Publications</strong>
+          <span>papers, preprints, and research documents</span>
+        </a>
+        <a class="studio-paper" href="{{ '/academic/' | relative_url }}#projects">
+          <strong>Projects</strong>
+          <span>systems, notebooks, experiments</span>
+        </a>
+        <a class="studio-paper" href="{{ '/blog/' | relative_url }}">
+          <strong>Blog</strong>
+          <span>learning logs and derivations</span>
+        </a>
+      </div>
+
+      <div class="studio-frontier studio-reveal" data-cursor-card>
+        <div class="studio-panel-title">
+          <span>Explore the frontier</span>
+          <small>move the pointer or adjust the slider</small>
+        </div>
+        <canvas width="520" height="260" data-frontier role="img" aria-label="Illustrative risk and return curve" aria-describedby="frontier-readout">An illustrative curve where return increases with risk. Use the risk slider to explore the values.</canvas>
+        <div class="studio-frontier__control" data-frontier-control hidden>
+          <label for="frontier-risk">Risk level</label>
+          <input id="frontier-risk" data-frontier-input type="range" min="0" max="1" step="0.01" value="0.42" aria-describedby="frontier-readout">
+        </div>
+        <div class="studio-frontier__readout" id="frontier-readout">
+          <span>risk <b data-risk>0.42</b></span>
+          <span>return <b data-return>0.56</b></span>
+        </div>
+        <noscript><p class="studio-frontier__note">Enable JavaScript to explore this illustrative curve.</p></noscript>
+      </div>
+
+      <div class="studio-bench studio-reveal">
+        <div class="studio-panel-title">
+          <span>Lab bench</span>
+          <small>micro-simulations by route</small>
+        </div>
+        <a class="studio-tool" href="{{ '/blog/' | relative_url }}">
+          <canvas width="96" height="58" data-spark="wave" aria-hidden="true"></canvas>
+          <span>Notes</span>
+        </a>
+        <a class="studio-tool" href="{{ '/academic/' | relative_url }}#projects">
+          <canvas width="96" height="58" data-spark="tree" aria-hidden="true"></canvas>
+          <span>Projects</span>
+        </a>
+        <a class="studio-tool" href="{{ '/academic/' | relative_url }}#publications">
+          <canvas width="96" height="58" data-spark="curve" aria-hidden="true"></canvas>
+          <span>Papers</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shell visitor-map" role="region" aria-label="Visitor map" tabindex="0">
+  <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=NV5OJQqxRJ-1OQaeWq4QN3sXvHezaIpOC1g7oD4OjtM&amp;cl=ffffff&amp;w=a"></script>
+</div>

@@ -134,23 +134,12 @@ title: Blog
     }
 
   </style>
-  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
-  <script defer src="{{ '/assets/site.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.asset_version }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header>
-    <div class="shell nav">
-      <a class="mark" href="../">Langchen Liu</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu</button>
-      <nav id="primary-navigation" aria-label="Primary navigation">
-        <a href="../#research">Research</a>
-        <a href="../#projects">Projects</a>
-        <a href="../#publications">Publications</a>
-        <a href="../#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  {% include navigation.html area='blog' %}
 
   <main id="main-content" tabindex="-1">
     <div class="shell">

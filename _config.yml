@@ -3,6 +3,7 @@ description: Personal website and research blog for Langchen Liu.
 url: "https://decoderliu.github.io"
 markdown: kramdown
 permalink: /blog/:title/
+asset_version: "20260930-sections"
 exclude:
   - Gemfile
   - Gemfile.lock

@@ -12,6 +12,12 @@
   outline-offset: 4px;
 }
 
+.site-header nav a[aria-current] {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
 .visitor-map {
   max-width: 100%;
   overflow: auto;

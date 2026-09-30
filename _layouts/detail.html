@@ -156,23 +156,12 @@
     }
 
   </style>
-  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
-  <script defer src="{{ '/assets/site.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.asset_version }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header>
-    <div class="shell nav">
-      <a class="mark" href="{{ "/" | relative_url }}">Langchen Liu</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu</button>
-      <nav id="primary-navigation" aria-label="Primary navigation">
-        <a href="{{ "/#research" | relative_url }}">Research</a>
-        <a href="{{ "/#projects" | relative_url }}">Projects</a>
-        <a href="{{ "/#publications" | relative_url }}">Publications</a>
-        <a href="{{ "/blog/" | relative_url }}">Blog</a>
-      </nav>
-    </div>
-  </header>
+  {% include navigation.html area='academic' %}
 
   <main id="main-content" tabindex="-1">
     <div class="shell">
@@ -194,7 +183,7 @@
         {{ content }}
       </article>
 
-      <p class="back"><a href="{{ "/" | relative_url }}">Back to homepage</a></p>
+      <p class="back"><a href="{{ "/academic/" | relative_url }}">Back to Academic</a></p>
     </div>
   </main>
 </body>
