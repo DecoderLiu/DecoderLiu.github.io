@@ -474,9 +474,6 @@
         min-height: 62px;
       }
 
-      nav {
-        display: none;
-      }
 
       .hero,
       .section-head,
@@ -516,15 +513,19 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/site.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <header>
     <div class="shell nav">
       <a class="mark" href="#top" aria-label="Langchen Liu home">
         <span>LL</span>
         <span>Langchen Liu</span>
       </a>
-      <nav aria-label="Primary navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu</button>
+      <nav id="primary-navigation" aria-label="Primary navigation">
         <a href="#studio">Studio</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
@@ -536,7 +537,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <div class="shell hero">
       <div>
         <p class="eyebrow">Yale Statistics &amp; Data Science</p>
@@ -625,11 +626,11 @@
               <line x1="243" y1="132" x2="338" y2="220" />
               <line x1="162" y1="222" x2="243" y2="132" />
               <line x1="162" y1="222" x2="338" y2="220" />
-              <g data-node data-x="102" data-y="88"><circle r="14" /><text>PDE</text></g>
-              <g data-node data-x="243" data-y="132"><circle r="18" /><text>Scientific ML</text></g>
-              <g data-node data-x="394" data-y="76"><circle r="14" /><text>Symbolic</text></g>
-              <g data-node data-x="162" data-y="222"><circle r="14" /><text>Quant</text></g>
-              <g data-node data-x="338" data-y="220"><circle r="14" /><text>Agents</text></g>
+              <g data-node data-x="102" data-y="88" transform="translate(102 88)"><circle r="14" /><text>PDE</text></g>
+              <g data-node data-x="243" data-y="132" transform="translate(243 132)"><circle r="18" /><text>Scientific ML</text></g>
+              <g data-node data-x="394" data-y="76" transform="translate(394 76)"><circle r="14" /><text>Symbolic</text></g>
+              <g data-node data-x="162" data-y="222" transform="translate(162 222)"><circle r="14" /><text>Quant</text></g>
+              <g data-node data-x="338" data-y="220" transform="translate(338 220)"><circle r="14" /><text>Agents</text></g>
             </svg>
           </div>
 
@@ -665,14 +666,19 @@
 
           <div class="studio-frontier studio-reveal" data-cursor-card>
             <div class="studio-panel-title">
-              <span>Cursor-following frontier</span>
-              <small>risk and return move together</small>
+              <span>Explore the frontier</span>
+              <small>move the pointer or adjust the slider</small>
             </div>
-            <canvas width="520" height="260" data-frontier></canvas>
-            <div class="studio-frontier__readout">
+            <canvas width="520" height="260" data-frontier role="img" aria-label="Illustrative risk and return curve" aria-describedby="frontier-readout">An illustrative curve where return increases with risk. Use the risk slider to explore the values.</canvas>
+            <div class="studio-frontier__control" data-frontier-control hidden>
+              <label for="frontier-risk">Risk level</label>
+              <input id="frontier-risk" data-frontier-input type="range" min="0" max="1" step="0.01" value="0.42" aria-describedby="frontier-readout">
+            </div>
+            <div class="studio-frontier__readout" id="frontier-readout">
               <span>risk <b data-risk>0.42</b></span>
-              <span>return <b data-return>0.68</b></span>
+              <span>return <b data-return>0.56</b></span>
             </div>
+            <noscript><p class="studio-frontier__note">Enable JavaScript to explore this illustrative curve.</p></noscript>
           </div>
 
           <div class="studio-bench studio-reveal">
@@ -681,15 +687,15 @@
               <small>micro-simulations by route</small>
             </div>
             <a class="studio-tool" href="#blog">
-              <canvas width="96" height="58" data-spark="wave"></canvas>
+              <canvas width="96" height="58" data-spark="wave" aria-hidden="true"></canvas>
               <span>Notes</span>
             </a>
             <a class="studio-tool" href="#projects">
-              <canvas width="96" height="58" data-spark="tree"></canvas>
+              <canvas width="96" height="58" data-spark="tree" aria-hidden="true"></canvas>
               <span>Projects</span>
             </a>
             <a class="studio-tool" href="#publications">
-              <canvas width="96" height="58" data-spark="curve"></canvas>
+              <canvas width="96" height="58" data-spark="curve" aria-hidden="true"></canvas>
               <span>Papers</span>
             </a>
           </div>
@@ -916,6 +922,8 @@
     <div class="shell">© 2026 Langchen Liu. Built with static HTML and GitHub Pages.</div>
   </footer>
   <script src="assets/interactive-studio.js"></script>
-  <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=NV5OJQqxRJ-1OQaeWq4QN3sXvHezaIpOC1g7oD4OjtM&cl=ffffff&w=a"></script>
+  <div class="shell visitor-map" role="region" aria-label="Visitor map" tabindex="0">
+    <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=NV5OJQqxRJ-1OQaeWq4QN3sXvHezaIpOC1g7oD4OjtM&cl=ffffff&w=a"></script>
+  </div>
 </body>
 </html>

@@ -2,11 +2,12 @@
   const studio = document.querySelector("[data-studio]");
   if (!studio) return;
 
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
   const setPointerVars = event => {
+    if (motionPreference.matches) return;
     document.querySelectorAll("[data-cursor-card]").forEach(card => {
       const rect = card.getBoundingClientRect();
       const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -23,12 +24,11 @@
     });
   };
 
-  if (!prefersReduced) {
-    window.addEventListener("pointermove", setPointerVars, { passive: true });
-  }
+  window.addEventListener("pointermove", setPointerVars, { passive: true });
 
   const eyes = studio.querySelectorAll("[data-eye]");
   const moveEyes = event => {
+    if (motionPreference.matches) return;
     eyes.forEach(eye => {
       const rect = eye.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
@@ -38,19 +38,26 @@
     });
   };
 
-  if (!prefersReduced) {
-    window.addEventListener("pointermove", moveEyes, { passive: true });
+  window.addEventListener("pointermove", moveEyes, { passive: true });
+
+  // Content stays visible if scripting or IntersectionObserver is unavailable.
+  if ('IntersectionObserver' in window && !motionPreference.matches) {
+    const reveal = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("is-pending");
+          reveal.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    studio.querySelectorAll(".studio-reveal").forEach(el => {
+      el.classList.add("is-pending");
+      reveal.observe(el);
+    });
   }
 
-  const reveal = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("is-visible");
-    });
-  }, { threshold: 0.18 });
-
-  studio.querySelectorAll(".studio-reveal").forEach(el => reveal.observe(el));
-
   const updateScroll = () => {
+    if (motionPreference.matches) return;
     const rect = studio.getBoundingClientRect();
     const ratio = clamp(1 - rect.top / window.innerHeight, 0, 1);
     studio.style.setProperty("--studio-scroll", ratio.toFixed(3));
@@ -60,8 +67,9 @@
   updateScroll();
 
   const constellation = studio.querySelector("[data-constellation]");
-  if (constellation && !prefersReduced) {
+  if (constellation) {
     constellation.addEventListener("pointermove", event => {
+      if (motionPreference.matches) return;
       const rect = constellation.getBoundingClientRect();
       const x = ((event.clientX - rect.left) / rect.width) * 520;
       const y = ((event.clientY - rect.top) / rect.height) * 300;
@@ -73,13 +81,13 @@
         const dy = y - ny;
         const dist = Math.hypot(dx, dy) || 1;
         const force = Math.max(0, 1 - dist / 180) * 18;
-        node.style.transform = `translate(${(dx / dist) * force}px, ${(dy / dist) * force}px)`;
+        node.setAttribute("transform", `translate(${nx + (dx / dist) * force} ${ny + (dy / dist) * force})`);
       });
     });
 
     constellation.addEventListener("pointerleave", () => {
       constellation.querySelectorAll("[data-node]").forEach(node => {
-        node.style.transform = "translate(0, 0)";
+        node.setAttribute("transform", `translate(${node.dataset.x} ${node.dataset.y})`);
       });
     });
   }
@@ -87,8 +95,9 @@
   const frontier = studio.querySelector("[data-frontier]");
   const riskEl = studio.querySelector("[data-risk]");
   const returnEl = studio.querySelector("[data-return]");
+  const riskInput = studio.querySelector("[data-frontier-input]");
 
-  if (frontier) {
+  if (frontier && frontier.getContext("2d")) {
     const ctx = frontier.getContext("2d");
 
     const drawFrontier = t => {
@@ -142,18 +151,29 @@
 
       if (riskEl) riskEl.textContent = u.toFixed(2);
       if (returnEl) returnEl.textContent = ret.toFixed(2);
+      if (riskInput) {
+        riskInput.value = u.toFixed(2);
+        riskInput.setAttribute("aria-valuetext", `Risk ${u.toFixed(2)}, return ${ret.toFixed(2)}`);
+      }
     };
 
     drawFrontier(0.42);
+    if (riskInput) {
+      studio.querySelector("[data-frontier-control]").hidden = false;
+      riskInput.addEventListener("input", () => drawFrontier(Number(riskInput.value)));
+    }
     frontier.addEventListener("pointermove", event => {
       const rect = frontier.getBoundingClientRect();
-      drawFrontier((event.clientX - rect.left) / rect.width);
+      // Match the pointer to the plotted axis, including its canvas margins.
+      const x = (event.clientX - rect.left) * frontier.width / rect.width;
+      drawFrontier((x - 76) / (frontier.width - 150));
     });
   }
 
   const drawSparks = time => {
     studio.querySelectorAll("[data-spark]").forEach(canvas => {
       const ctx = canvas.getContext("2d");
+      if (!ctx) return;
       const w = canvas.width;
       const kind = canvas.dataset.spark;
 
@@ -195,8 +215,39 @@
       }
     });
 
-    if (!prefersReduced) requestAnimationFrame(drawSparks);
   };
 
-  drawSparks(0);
+  let frame = null;
+  let benchVisible = !('IntersectionObserver' in window);
+  const animate = time => {
+    drawSparks(time);
+    frame = requestAnimationFrame(animate);
+  };
+  const updateAnimation = () => {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    drawSparks(0);
+    if (benchVisible && !document.hidden && !motionPreference.matches) {
+      frame = requestAnimationFrame(animate);
+    }
+  };
+  const bench = studio.querySelector('.studio-bench');
+  if (bench && 'IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      benchVisible = entries[0].isIntersecting;
+      updateAnimation();
+    }).observe(bench);
+  }
+  document.addEventListener('visibilitychange', updateAnimation);
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) {
+      studio.querySelectorAll('.is-pending').forEach(el => el.classList.remove('is-pending'));
+      eyes.forEach(eye => eye.style.removeProperty('transform'));
+      constellation?.querySelectorAll('[data-node]').forEach(node => {
+        node.setAttribute('transform', `translate(${node.dataset.x} ${node.dataset.y})`);
+      });
+    }
+    updateAnimation();
+  });
+  updateAnimation();
 })();

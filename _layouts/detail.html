@@ -155,18 +155,17 @@
       color: var(--muted);
     }
 
-    @media (max-width: 720px) {
-      nav {
-        display: none;
-      }
-    }
   </style>
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header>
     <div class="shell nav">
       <a class="mark" href="{{ "/" | relative_url }}">Langchen Liu</a>
-      <nav aria-label="Primary navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu</button>
+      <nav id="primary-navigation" aria-label="Primary navigation">
         <a href="{{ "/#research" | relative_url }}">Research</a>
         <a href="{{ "/#projects" | relative_url }}">Projects</a>
         <a href="{{ "/#publications" | relative_url }}">Publications</a>
@@ -175,7 +174,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="shell">
       <span class="meta">{{ page.section_label | default: "Detail" }}</span>
       <h1>{{ page.title }}</h1>
