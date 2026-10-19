@@ -918,6 +918,7 @@ A good way to use the widget:
     </div>
   </div>
 
+  <p class="demo-status" id="geometry-status" role="status" aria-live="polite" hidden></p>
   <svg id="geometry-svg" viewBox="0 0 860 640" role="img" aria-label="Interactive Markowitz three-security geometry"></svg>
   <p class="demo-readout" id="geometry-readout"></p>
 </div>
@@ -994,10 +995,10 @@ A good way to use the widget:
     background: #eef0f4;
   }
 
-  .markowitz-demo svg {
+  .markowitz-demo > svg {
     display: block;
     width: 100%;
-    min-height: 520px;
+    height: auto;
     border: 1px solid rgba(20, 23, 31, 0.1);
     border-radius: 8px;
     background: #fbfaf7;
@@ -1006,6 +1007,13 @@ A good way to use the widget:
   .demo-readout {
     margin: 14px 0 0;
     color: #303847;
+  }
+
+  .demo-status {
+    padding: 12px;
+    border-left: 3px solid #9b6215;
+    background: #fff7e6;
+    color: #693f08;
   }
 
   @media (max-width: 760px) {
@@ -1025,6 +1033,48 @@ A good way to use the widget:
     const el = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
     const presetSelect = document.getElementById('casePreset');
     const readout = document.getElementById('geometry-readout');
+    const status = document.getElementById('geometry-status');
+    const editableIds = ['r1', 'r2', 'r3', 's11', 's12', 's13', 's22', 's23', 's33'];
+    const covarianceIds = editableIds.filter((id) => id.startsWith('s'));
+    let hasValidPlot = false;
+
+    function showInputError(message, invalidIds = []) {
+      editableIds.forEach((id) => {
+        el[id].setAttribute('aria-invalid', String(invalidIds.includes(id)));
+      });
+      status.textContent = message + (hasValidPlot ? ' The plot still shows the last valid inputs.' : '');
+      status.hidden = false;
+    }
+
+    function clearInputError() {
+      editableIds.forEach((id) => el[id].removeAttribute('aria-invalid'));
+      status.textContent = '';
+      status.hidden = true;
+    }
+
+    function validateInputs(s) {
+      const invalidNumbers = editableIds.filter((id) => el[id].value.trim() === '' || !Number.isFinite(Number(el[id].value)));
+      if (invalidNumbers.length) {
+        showInputError('Enter a finite number in every return and covariance field.', invalidNumbers);
+        return false;
+      }
+
+      // Covariance matrices must be positive semidefinite. Check all principal
+      // minors after normalization so this test does not depend on their units.
+      const scale = Math.max(...s.flat().map(Math.abs));
+      const a = s.map((row) => row.map((value) => value / (scale || 1)));
+      const tolerance = 1e-10;
+      const diagonalIsNegative = [0, 1, 2].some((i) => s[i][i] < 0);
+      const minorIsNegative = [[0, 1], [0, 2], [1, 2]].some(([i, j]) => a[i][i] * a[j][j] - a[i][j] * a[i][j] < -tolerance);
+      const determinant = a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[1][2])
+        - a[0][1] * (a[0][1] * a[2][2] - a[1][2] * a[0][2])
+        + a[0][2] * (a[0][1] * a[1][2] - a[1][1] * a[0][2]);
+      if (diagonalIsNegative || minorIsNegative || determinant < -tolerance) {
+        showInputError('Enter a positive semidefinite covariance matrix: variances must be nonnegative and covariances must be consistent with them.', covarianceIds);
+        return false;
+      }
+      return true;
+    }
 
     const presets = {
       book2: {
@@ -1266,7 +1316,9 @@ A good way to use the widget:
       const disc = Math.max(tr * tr - 4 * det, 0);
       const l1 = (tr + Math.sqrt(disc)) / 2;
       const l2 = (tr - Math.sqrt(disc)) / 2;
-      const v1 = Math.abs(A[0][1]) > 1e-12 ? [l1 - A[1][1], A[0][1]] : [1, 0];
+      const v1 = Math.abs(A[0][1]) > 1e-12
+        ? [l1 - A[1][1], A[0][1]]
+        : (A[0][0] >= A[1][1] ? [1, 0] : [0, 1]);
       const norm = Math.hypot(v1[0], v1[1]) || 1;
       const e1 = [v1[0] / norm, v1[1] / norm];
       const e2 = [-e1[1], e1[0]];
@@ -1279,8 +1331,18 @@ A good way to use the widget:
 
     function draw() {
       const { r, s } = readInputs();
+      if (!validateInputs(s)) return;
       const g = geometry(r, s);
+      if (![...g.A.flat(), ...g.z0, ...g.d].every(Number.isFinite)) {
+        showInputError('This matrix has no unique ellipse center, is too close to singular, or exceeds the numeric range of this demo. Adjust the covariance values or choose a preset.', covarianceIds);
+        return;
+      }
       const f = frontier(r, s);
+      if (!f.length || f.some((p) => ![...p.w, p.v, p.e].every(Number.isFinite))) {
+        showInputError('These values exceed the numeric range of this demo. Use smaller return and covariance values or choose a preset.', editableIds);
+        return;
+      }
+      clearInputError();
       const xs = [0, 1, 0, g.z0[0]].filter(Number.isFinite);
       const ys = [0, 0, 1, g.z0[1]].filter(Number.isFinite);
       const xMin = Math.min(-0.16, ...xs.map((x) => x - 0.12));
@@ -1380,13 +1442,15 @@ A good way to use the widget:
         'assets absent from efficient set: ' + (absent.length ? absent.join(', ') : 'none') + '. ',
         f.length ? 'Weight ranges: min X = [' + mins.map(fmt).join(', ') + '], max X = [' + maxs.map(fmt).join(', ') + '].' : 'No feasible frontier was found for this matrix.'
       ].map(escapeXml).join('');
+      hasValidPlot = true;
     }
 
     presetSelect.addEventListener('change', () => {
       setInputs(presets[presetSelect.value]);
       draw();
     });
-    ['r1', 'r2', 'r3', 's11', 's12', 's13', 's22', 's23', 's33'].forEach((id) => {
+    editableIds.forEach((id) => {
+      el[id].setAttribute('aria-describedby', 'geometry-status');
       el[id].addEventListener('input', draw);
     });
     setInputs(presets.book2);

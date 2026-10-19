@@ -1,0 +1,186 @@
+---
+layout: page
+title: Academic
+area: academic
+description: Research in symbolic PDE discovery, benchmarks for equation discovery and LLM agents, foundation models for science, and agentic scientific discovery, with selected publications and academic background.
+---
+
+<nav class="shell section-nav" aria-label="Academic sections">
+  <a href="#research">Research</a>
+  <a href="#projects">Projects</a>
+  <a href="#publications">Publications</a>
+  <a href="#path">Academic path</a>
+</nav>
+
+<p class="shell academic-intro">I am a PhD student in Statistics &amp; Data Science at Yale University. My current work is PDEDiscoveryBench, a benchmark for equation discovery with classical methods and LLM agents (under review); SciExam for ENSO, on whether AI agents can build climate models (arXiv); and FoundPDE, a generative foundation model for symbolic PDE discovery (manuscript). Next is PDEScientist, an AI researcher for equation discovery supported by Anthropic's AI for Science Program. I also write <a href="{{ '/blog/' | relative_url }}">research notes</a> on scientific machine learning, optimization, and paper reading.</p>
+
+<section class="shell" id="research">
+  <div class="section-head">
+    <h2>Research</h2>
+    <p>My current work is organized around symbolic PDE discovery: benchmarks for discovery methods, foundation models that propose equations, and agentic scientific-discovery systems.</p>
+  </div>
+  <div class="grid">
+    <a class="card card-link" href="{{ '/research/symbolic-pde-discovery/' | relative_url }}">
+      <span class="meta">Problem</span>
+      <h3>Symbolic PDE Discovery</h3>
+      <p>Recovering interpretable governing equations from numerical solution fields, especially when data are sparse or noisy.</p>
+      <div class="tag-row">
+        <span class="tag">PDEs</span>
+        <span class="tag">symbolic structure</span>
+        <span class="tag">PDEDiscoveryBench</span>
+      </div>
+    </a>
+    <a class="card card-link" href="{{ '/research/foundation-models-for-science/' | relative_url }}">
+      <span class="meta">Method</span>
+      <h3>Foundation Models for Science</h3>
+      <p>Training reusable models across PDE families so symbolic discovery becomes a learned data-to-sequence problem.</p>
+      <div class="tag-row">
+        <span class="tag">FoundPDE</span>
+        <span class="tag">transformers</span>
+        <span class="tag">pretraining</span>
+      </div>
+    </a>
+    <a class="card card-link" href="{{ '/research/agentic-scientific-discovery/' | relative_url }}">
+      <span class="meta">Next stage</span>
+      <h3>Agentic Scientific Discovery</h3>
+      <p>Designing systems that propose equations, choose methods, call evaluators, design experiments, inspect feedback, and revise hypotheses.</p>
+      <div class="tag-row">
+        <span class="tag">PDEScientist</span>
+        <span class="tag">tool use</span>
+        <span class="tag">validation loops</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="shell" id="projects">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <p>Current projects form a path from one-shot symbolic prediction, through a benchmark for classical methods and LLM agents, toward an AI researcher for equation discovery.</p>
+  </div>
+  <div class="grid">
+    <a class="card card-link" href="{{ '/projects/foundpde/' | relative_url }}">
+      <span class="meta">Current manuscript</span>
+      <h3>FoundPDE</h3>
+      <p>A generative foundation model for data-driven symbolic discovery of one-dimensional time-dependent PDEs. The model maps discretized solution trajectories to symbolic PDE expressions, then refines coefficients with BFGS.</p>
+      <div class="tag-row">
+        <span class="tag">data-to-symbol</span>
+        <span class="tag">Fourier features</span>
+        <span class="tag">coefficient refinement</span>
+      </div>
+    </a>
+    <a class="card card-link" href="{{ '/projects/pdediscoverybench/' | relative_url }}">
+      <span class="meta">Under review</span>
+      <h3>PDEDiscoveryBench</h3>
+      <p>A benchmark for discovering governing equations from observations: 337 ODE/PDE systems, seven methods from sparse regression to tool-using LLM agents, three levels of disclosed scientific prior, and four noise tiers. Results depend strongly on the prior a method receives, at every noise level.</p>
+      <div class="tag-row">
+        <span class="tag">benchmarks</span>
+        <span class="tag">LLM agents</span>
+        <span class="tag">scientific priors</span>
+      </div>
+    </a>
+    <a class="card card-link" href="{{ '/projects/pdescientist/' | relative_url }}">
+      <span class="meta">Next project</span>
+      <h3>PDEScientist</h3>
+      <p>An AI researcher for equation discovery that combines LLM reasoning with sparse regression, symbolic regression, and simulation, and runs the loop of choosing methods, designing experiments, and validating results. Supported by Anthropic's AI for Science Program.</p>
+      <div class="tag-row">
+        <span class="tag">agentic AI</span>
+        <span class="tag">experiment design</span>
+        <span class="tag">hypothesis refinement</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="shell" id="publications">
+  <div class="section-head">
+    <h2>Publications</h2>
+    <p>Selected publications, manuscripts, and research documents. The newest work is centered on equation discovery and on evaluating AI agents for science.</p>
+  </div>
+  <div class="publication-list">
+    <a class="publication publication-link" href="{{ '/publications/pdediscoverybench/' | relative_url }}">
+      <div>
+        <span class="meta">Under review</span>
+      </div>
+      <div>
+        <h3>PDEDiscoveryBench</h3>
+        <p>First-author benchmark paper comparing classical equation-discovery methods and tool-using LLM agents on 337 ODE/PDE systems under controlled scientific priors and noise, with a case study on unlabeled CFD blood-flow fields.</p>
+      </div>
+    </a>
+    <a class="publication publication-link" href="{{ '/publications/sciexam-enso/' | relative_url }}">
+      <div>
+        <span class="meta">arXiv 2026</span>
+      </div>
+      <div>
+        <h3>SciExam for ENSO: Can AI Agents Build Climate Models?</h3>
+        <p>AI agents build low-order stochastic models of the El Ni&ntilde;o-Southern Oscillation from real observations, and hidden graders score them against a published reference model. Six of twelve agent-built models exceed the reference.</p>
+      </div>
+    </a>
+    <a class="publication publication-link" href="{{ '/publications/foundpde/' | relative_url }}">
+      <div>
+        <span class="meta">Manuscript</span>
+      </div>
+      <div>
+        <h3>FoundPDE: A generative foundation model for data-driven symbolic discovery of partial differential equations</h3>
+        <p>Current manuscript on transformer-based data-to-symbol PDE discovery from spatiotemporal solution data, with coefficient refinement, sparse-data evaluation, few-shot adaptation, and step-by-step compositional discovery.</p>
+      </div>
+    </a>
+    <a class="publication publication-link" href="{{ '/publications/prospectus/' | relative_url }}">
+      <div>
+        <span class="meta">Prospectus</span>
+      </div>
+      <div>
+        <h3>Symbolic PDE Discovery with Foundation Models and Agentic Scientific Discovery</h3>
+        <p>Dissertation prospectus framing FoundPDE as the current foundation and PDEScientist as the next stage toward tool-using, evaluator-grounded scientific-discovery systems.</p>
+      </div>
+    </a>
+    <a class="publication publication-link" href="{{ '/publications/federated-sciml/' | relative_url }}">
+      <div>
+        <span class="meta">IEEE TNNLS 2025</span>
+      </div>
+      <div>
+        <h3>Federated Scientific Machine Learning for Approximating Functions and Solving Differential Equations With Data Heterogeneity</h3>
+        <p>Journal article on federated scientific machine learning for decentralized function approximation, physics-informed neural networks, and operator learning under data heterogeneity.</p>
+      </div>
+    </a>
+    <a class="publication publication-link" href="{{ '/publications/multilingual-emotion/' | relative_url }}">
+      <div>
+        <span class="meta">WASSA 2023</span>
+      </div>
+      <div>
+        <h3>Multilingual Language Models are not Multicultural: A Case Study in Emotion</h3>
+        <p>Earlier work studying whether multilingual language models capture culturally specific emotional expression across languages.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="shell" id="path">
+  <div class="section-head">
+    <h2>Path</h2>
+    <p>A compact academic path from applied mathematics into statistics, machine learning, and scientific AI.</p>
+  </div>
+  <div class="timeline">
+    <article class="event">
+      <div class="date">2023 - present</div>
+      <div>
+        <h3>PhD student, Statistics &amp; Data Science</h3>
+        <p>Yale University, New Haven. Advisor: Lu Lu.</p>
+      </div>
+    </article>
+    <article class="event">
+      <div class="date">2022 - 2023</div>
+      <div>
+        <h3>PhD student, Applied Mathematics and Computational Science</h3>
+        <p>University of Pennsylvania, Philadelphia. Advisor: Lu Lu.</p>
+      </div>
+    </article>
+    <article class="event">
+      <div class="date">2018 - 2022</div>
+      <div>
+        <h3>BSc, Applied Mathematics</h3>
+        <p>Duke University and Duke Kunshan University.</p>
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% unless page.area == 'home' %}{{ page.title }} | {% endunless %}Langchen Liu</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/langchen-liu.jpg' | absolute_url }}">
+  <link rel="stylesheet" href="{{ '/assets/pages.css' | relative_url }}?v={{ site.asset_version }}">
+  {% if page.studio %}<link rel="stylesheet" href="{{ '/assets/interactive-studio.css' | relative_url }}?v={{ site.asset_version }}">{% endif %}
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.asset_version }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}"></script>
+  {% if page.area == 'home' %}<script defer src="{{ '/assets/home.js' | relative_url }}?v={{ site.asset_version }}"></script>{% endif %}
+  {% if page.studio %}<script defer src="{{ '/assets/interactive-studio.js' | relative_url }}?v={{ site.asset_version }}"></script>{% endif %}
+</head>
+<body class="page-{{ page.area | escape }}">
+  <a class="skip-link" href="#top">Skip to content</a>
+  {% include navigation.html area=page.area %}
+  <main id="top" tabindex="-1">
+    {% unless page.area == 'home' %}
+    <div class="shell page-intro">
+      <h1>{{ page.title }}</h1>
+      <p class="lede">{{ page.description }}</p>
+    </div>
+    {% endunless %}
+    {{ content }}
+  </main>
+  <footer class="site-footer shell" id="contact">
+    <a href="mailto:langchen.liu@yale.edu">langchen.liu@yale.edu</a>
+    <span>© {{ site.time | date: '%Y' }} Langchen Liu</span>
+  </footer>
+</body>
+</html>

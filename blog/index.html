@@ -133,27 +133,15 @@ title: Blog
       font-weight: 720;
     }
 
-    @media (max-width: 720px) {
-      nav {
-        display: none;
-      }
-    }
   </style>
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.asset_version }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}"></script>
 </head>
 <body>
-  <header>
-    <div class="shell nav">
-      <a class="mark" href="../">Langchen Liu</a>
-      <nav aria-label="Primary navigation">
-        <a href="../#research">Research</a>
-        <a href="../#projects">Projects</a>
-        <a href="../#publications">Publications</a>
-        <a href="../#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% include navigation.html area='blog' %}
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="shell">
       <h1>Blog</h1>
       <p class="intro">

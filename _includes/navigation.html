@@ -1,0 +1,12 @@
+<header class="site-header">
+  <div class="shell nav">
+    <a class="mark" href="{{ '/' | relative_url }}" aria-label="Langchen Liu home">Langchen Liu</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" hidden>Menu</button>
+    <nav id="primary-navigation" aria-label="Primary navigation">
+      <a href="{{ '/academic/' | relative_url }}"{% if include.area == 'academic' %} aria-current="{% if page.url == '/academic/' %}page{% else %}location{% endif %}"{% endif %}>Academic</a>
+      <a href="{{ '/industry/' | relative_url }}"{% if include.area == 'industry' %} aria-current="{% if page.url == '/industry/' %}page{% else %}location{% endif %}"{% endif %}>Industry</a>
+      <a href="{{ '/playground/' | relative_url }}"{% if include.area == 'playground' %} aria-current="{% if page.url == '/playground/' %}page{% else %}location{% endif %}"{% endif %}>Playground</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if include.area == 'blog' %} aria-current="{% if page.url == '/blog/' %}page{% else %}location{% endif %}"{% endif %}>Blog</a>
+    </nav>
+  </div>
+</header>

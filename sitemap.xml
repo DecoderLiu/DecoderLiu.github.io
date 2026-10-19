@@ -7,6 +7,15 @@ layout: null
     <loc>{{ "/" | absolute_url }}</loc>
   </url>
   <url>
+    <loc>{{ "/academic/" | absolute_url }}</loc>
+  </url>
+  <url>
+    <loc>{{ "/industry/" | absolute_url }}</loc>
+  </url>
+  <url>
+    <loc>{{ "/playground/" | absolute_url }}</loc>
+  </url>
+  <url>
     <loc>{{ "/blog/" | absolute_url }}</loc>
   </url>
   <url>
