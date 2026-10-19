@@ -8,6 +8,8 @@ permalink: /projects/pde-evaluation-loops/
 
 This infrastructure project supports PDE-discovery experiments by making the scoring contract explicit and repeatable.
 
+A related project, [PDEDiscoveryBench](/projects/pdediscoverybench/), is a benchmark that compares classical equation-discovery methods and LLM agents.
+
 It exists because evaluation is part of the scientific claim. If the model can infer or construct the target derivative itself, or if the scorer changes between offline and live settings, then a good-looking result may not mean the discovered equation is valid.
 
 ## Current emphasis
@@ -31,6 +33,7 @@ Agentic scientific-discovery systems can produce impressive-looking outputs for 
 
 ## Related pages
 
+- [PDEDiscoveryBench](/projects/pdediscoverybench/)
 - [PDEScientist](/projects/pdescientist/)
 - [Agentic Scientific Discovery](/research/agentic-scientific-discovery/)
 - [Symbolic PDE Discovery](/research/symbolic-pde-discovery/)

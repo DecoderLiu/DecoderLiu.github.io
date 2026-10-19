@@ -31,5 +31,6 @@ Scientific machine learning becomes more useful when the output is an interpreta
 ## Related work on this site
 
 - [FoundPDE](/projects/foundpde/) studies direct data-to-symbol PDE prediction.
-- [PDEScientist](/projects/pdescientist/) studies iterative, evaluator-guided PDE discovery.
+- [PDEDiscoveryBench](/projects/pdediscoverybench/) compares classical methods and LLM agents across 337 ODE/PDE systems.
+- [PDEScientist](/projects/pdescientist/) is the next stage: an AI researcher for iterative, evaluator-guided equation discovery.
 - [PDE Evaluation Loops](/projects/pde-evaluation-loops/) focuses on scoring contracts and trace-based diagnosis.

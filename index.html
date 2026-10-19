@@ -525,6 +525,7 @@
         <span>Langchen Liu</span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="#news">News</a>
         <a href="#studio">Studio</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
@@ -544,12 +545,12 @@
         <p class="lede">
           I am a PhD student in Statistics &amp; Data Science at Yale University.
           My research is in scientific machine learning, with a current focus on
-          PDE discovery, foundation models for science, and agentic systems for
-          scientific reasoning.
+          PDE discovery, foundation models for science, agentic systems for
+          scientific reasoning, and benchmarks that test these methods.
         </p>
         <ul class="focus-list" aria-label="Current focus areas">
-          <li><strong>Current</strong><span>FoundPDE, a generative foundation model for symbolic PDE discovery.</span></li>
-          <li><strong>Next</strong><span>PDEScientist, an evaluator-guided system for iterative scientific discovery.</span></li>
+          <li><strong>Current</strong><span>PDEDiscoveryBench, a benchmark for equation discovery with classical methods and LLM agents (under review); SciExam for ENSO, on whether AI agents can build climate models (arXiv); and FoundPDE, a generative foundation model for symbolic PDE discovery (manuscript).</span></li>
+          <li><strong>Next</strong><span>PDEScientist, an AI researcher for equation discovery that pairs LLM reasoning with classical scientific tools, supported by Anthropic's AI for Science Program.</span></li>
           <li><strong>Writing</strong><span>Research notes on scientific machine learning, optimization, and paper reading.</span></li>
         </ul>
         <div class="actions" aria-label="Primary links">
@@ -569,11 +570,50 @@
           </div>
         </div>
         <div class="status-card">
-          <strong>Research focus</strong>
-          <span>Scientific machine learning, PDE discovery, and AI systems for scientific reasoning.</span>
+          <strong>Fall 2026</strong>
+          <span>PDEDiscoveryBench under review, SciExam for ENSO on arXiv, FoundPDE in manuscript. Next: PDEScientist.</span>
         </div>
       </aside>
     </div>
+
+    <section id="news">
+      <div class="shell">
+        <div class="section-head">
+          <h2>News</h2>
+          <p>Recent updates on papers, projects, and work.</p>
+        </div>
+        <div class="timeline">
+          <article class="event">
+            <div class="date">Oct 2026</div>
+            <div>
+              <h3>Anthropic AI for Science Program award</h3>
+              <p><a class="text-link" href="projects/pdescientist/">PDEScientist</a>, an AI researcher for equation discovery, is supported by Anthropic's AI for Science Program.</p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="date">Oct 2026</div>
+            <div>
+              <h3>SciExam for ENSO on arXiv</h3>
+              <p>A study of whether AI agents can build low-order models of the El Ni&ntilde;o-Southern Oscillation from real observations. <a class="text-link" href="https://arxiv.org/abs/2610.10513">arXiv:2610.10513</a></p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="date">Fall 2026</div>
+            <div>
+              <h3>PDEDiscoveryBench under review</h3>
+              <p>A benchmark for discovering governing equations from data, comparing classical methods and LLM agents. <a class="text-link" href="projects/pdediscoverybench/">Project page</a></p>
+            </div>
+          </article>
+          <article class="event">
+            <div class="date">Summer 2026</div>
+            <div>
+              <h3>Quantitative Research Intern, Schonfeld Strategic Advisors</h3>
+              <p>Neutrality Team, New York.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section id="studio" data-studio>
       <div class="shell">
@@ -701,7 +741,7 @@
       <div class="shell">
         <div class="section-head">
           <h2>Research</h2>
-          <p>My current work is organized around symbolic PDE discovery with foundation models and agentic scientific-discovery systems.</p>
+          <p>My current work is organized around symbolic PDE discovery: benchmarks for discovery methods, foundation models that propose equations, and agentic scientific-discovery systems.</p>
         </div>
         <div class="grid">
           <a class="card card-link" href="research/symbolic-pde-discovery/">
@@ -712,6 +752,7 @@
               <span class="tag">PDEs</span>
               <span class="tag">symbolic structure</span>
               <span class="tag">spatiotemporal data</span>
+              <span class="tag">PDEDiscoveryBench</span>
             </div>
           </a>
           <a class="card card-link" href="research/foundation-models-for-science/">
@@ -727,7 +768,7 @@
           <a class="card card-link" href="research/agentic-scientific-discovery/">
             <span class="meta">Next stage</span>
             <h3>Agentic Scientific Discovery</h3>
-            <p>Designing systems that propose equations, call evaluators, fit coefficients, inspect feedback, and revise hypotheses.</p>
+            <p>Designing systems that propose equations, choose methods, call evaluators, design experiments, inspect feedback, and revise hypotheses.</p>
             <div class="tag-row">
               <span class="tag">PDEScientist</span>
               <span class="tag">tool use</span>
@@ -742,7 +783,7 @@
       <div class="shell">
         <div class="section-head">
           <h2>Projects</h2>
-          <p>Current projects form a path from one-shot symbolic prediction toward iterative scientific-discovery systems.</p>
+          <p>Current projects form a path from one-shot symbolic prediction, through a benchmark for classical methods and LLM agents, toward an AI researcher for equation discovery.</p>
         </div>
         <div class="grid">
           <a class="card card-link" href="projects/foundpde/">
@@ -755,24 +796,24 @@
               <span class="tag">coefficient refinement</span>
             </div>
           </a>
-          <a class="card card-link" href="projects/pdescientist/">
-            <span class="meta">Dissertation direction</span>
-            <h3>PDEScientist</h3>
-            <p>An agentic PDE-discovery system where a model proposes candidate equations, analyzes data, calls evaluator tools, fits coefficients, and refines symbolic hypotheses over multiple turns.</p>
-            <div class="tag-row">
-              <span class="tag">agentic AI</span>
-              <span class="tag">PDE evaluator</span>
-              <span class="tag">hypothesis refinement</span>
-            </div>
-          </a>
-          <a class="card card-link" href="projects/pde-evaluation-loops/">
-            <span class="meta">Research infrastructure</span>
-            <h3>PDE Evaluation Loops</h3>
-            <p>Benchmark and evaluator design for PDE discovery from raw solution data, including evaluator-owned targets, controlled feature namespaces, residual scoring, coefficient fitting, and trace-based failure analysis.</p>
+          <a class="card card-link" href="projects/pdediscoverybench/">
+            <span class="meta">Under review</span>
+            <h3>PDEDiscoveryBench</h3>
+            <p>A benchmark for discovering governing equations from observations: 337 ODE/PDE systems, seven methods from sparse regression to tool-using LLM agents, three levels of disclosed scientific prior, and four noise tiers. Results depend strongly on the prior a method receives, at every noise level.</p>
             <div class="tag-row">
               <span class="tag">benchmarks</span>
-              <span class="tag">residual NMSE</span>
-              <span class="tag">rollout checks</span>
+              <span class="tag">LLM agents</span>
+              <span class="tag">scientific priors</span>
+            </div>
+          </a>
+          <a class="card card-link" href="projects/pdescientist/">
+            <span class="meta">Next project</span>
+            <h3>PDEScientist</h3>
+            <p>An AI researcher for equation discovery that combines LLM reasoning with sparse regression, symbolic regression, and simulation, and runs the loop of choosing methods, designing experiments, and validating results. Supported by Anthropic's AI for Science Program.</p>
+            <div class="tag-row">
+              <span class="tag">agentic AI</span>
+              <span class="tag">experiment design</span>
+              <span class="tag">hypothesis refinement</span>
             </div>
           </a>
         </div>
@@ -783,9 +824,27 @@
       <div class="shell">
         <div class="section-head">
           <h2>Publications</h2>
-          <p>Selected publications, manuscripts, and research documents. The newest work is centered on symbolic PDE discovery.</p>
+          <p>Selected publications, manuscripts, and research documents. The newest work is centered on equation discovery and on evaluating AI agents for science.</p>
         </div>
         <div class="publication-list">
+          <a class="publication publication-link" href="publications/pdediscoverybench/">
+            <div>
+              <span class="meta">Under review</span>
+            </div>
+            <div>
+              <h3>PDEDiscoveryBench</h3>
+              <p>First-author benchmark paper comparing classical equation-discovery methods and tool-using LLM agents on 337 ODE/PDE systems under controlled scientific priors and noise, with a case study on unlabeled CFD blood-flow fields.</p>
+            </div>
+          </a>
+          <a class="publication publication-link" href="publications/sciexam-enso/">
+            <div>
+              <span class="meta">arXiv 2026</span>
+            </div>
+            <div>
+              <h3>SciExam for ENSO: Can AI Agents Build Climate Models?</h3>
+              <p>AI agents build low-order stochastic models of the El Ni&ntilde;o-Southern Oscillation from real observations, and hidden graders score them against a published reference model. Six of twelve agent-built models exceed the reference.</p>
+            </div>
+          </a>
           <a class="publication publication-link" href="publications/foundpde/">
             <div>
               <span class="meta">Manuscript</span>
@@ -856,9 +915,16 @@
       <div class="shell">
         <div class="section-head">
           <h2>Path</h2>
-          <p>A compact academic path from applied mathematics into statistics, machine learning, and scientific AI.</p>
+          <p>A compact path from applied mathematics into statistics, machine learning, scientific AI, and quantitative research.</p>
         </div>
         <div class="timeline">
+          <article class="event">
+            <div class="date">Summer 2026</div>
+            <div>
+              <h3>Quantitative Research Intern</h3>
+              <p>Schonfeld Strategic Advisors, New York. Neutrality Team.</p>
+            </div>
+          </article>
           <article class="event">
             <div class="date">2023 - present</div>
             <div>

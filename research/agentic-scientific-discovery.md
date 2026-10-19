@@ -26,6 +26,8 @@ I am interested in agents as scientific workflow systems, not just chat interfac
 
 ## Connection to my projects
 
-PDEScientist is the main project in this direction. It extends symbolic PDE discovery into an iterative, tool-using scientific-discovery loop.
+[PDEDiscoveryBench](/projects/pdediscoverybench/) is the evaluation component of this direction. It compares tool-using LLM agents with classical equation-discovery methods under controlled scientific priors and noise. [SciExam for ENSO](/publications/sciexam-enso/) asks a related question for climate modeling: whether AI agents can build models of ENSO from real observations.
+
+[PDEScientist](/projects/pdescientist/) is the next stage. It extends symbolic PDE discovery into an AI researcher that chooses methods, designs experiments, and validates results.
 
 This direction also feeds back into evaluation design. If the evaluator is too permissive, an agent can appear successful for the wrong reason. If the evaluator is too narrow, the system may fail even when the scientific idea is close.
