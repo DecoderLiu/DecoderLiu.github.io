@@ -5,6 +5,8 @@ section_label: "Project"
 description: "A generative foundation model for data-driven symbolic discovery of partial differential equations."
 permalink: /projects/foundpde/
 links:
+  - label: "arXiv"
+    url: "https://arxiv.org/abs/2610.26963"
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?hl=en&user=CQZcPZQAAAAJ"
 ---
@@ -29,7 +31,7 @@ The project treats equation discovery as a data-to-symbol task. Instead of fitti
 
 ## Current status
 
-This is the current manuscript-level project. It is the foundation-model anchor of my dissertation direction and the starting point for the more iterative PDEScientist line of work.
+The paper is available as a preprint, [arXiv:2610.26963](https://arxiv.org/abs/2610.26963) (October 2026). It is the foundation-model anchor of my dissertation direction and the starting point for the more iterative PDEScientist line of work.
 
 ## Role in the broader agenda
 
@@ -39,4 +41,4 @@ FoundPDE is the foundation-model component of my current research arc. It establ
 
 - [Foundation Models for Science](/research/foundation-models-for-science/)
 - [Symbolic PDE Discovery](/research/symbolic-pde-discovery/)
-- [FoundPDE manuscript page](/publications/foundpde/)
+- [FoundPDE paper page](/publications/foundpde/)

@@ -2,14 +2,20 @@
 layout: detail
 title: "FoundPDE: A Generative Foundation Model for Data-Driven Symbolic Discovery of Partial Differential Equations"
 section_label: "Publication"
-description: "Current manuscript on transformer-based data-to-symbol PDE discovery from spatiotemporal solution data."
+description: "arXiv 2026 preprint on transformer-based data-to-symbol PDE discovery from spatiotemporal solution data."
 permalink: /publications/foundpde/
 links:
+  - label: "arXiv"
+    url: "https://arxiv.org/abs/2610.26963"
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?hl=en&user=CQZcPZQAAAAJ"
 ---
 
-This manuscript presents FoundPDE, a generative foundation model for symbolic discovery of partial differential equations from data.
+Authors: Langchen Liu, Junlin Luo, Min Zhu, Zhuoran Yang, and Lu Lu.
+
+Preprint, arXiv:2610.26963, October 2026.
+
+This paper presents FoundPDE, a generative foundation model for symbolic discovery of partial differential equations from data.
 
 ## Summary
 
@@ -17,7 +23,7 @@ FoundPDE maps discretized solution trajectories to symbolic PDE expressions. The
 
 ## Role in my research
 
-This is the central current manuscript in my research profile. It anchors the foundation-model side of my dissertation direction and motivates the later move toward PDEScientist, where symbolic proposal is embedded in an iterative evaluation loop.
+This is the central paper in my research profile. It anchors the foundation-model side of my dissertation direction and motivates the later move toward PDEScientist, where symbolic proposal is embedded in an iterative evaluation loop.
 
 ## Topics
 
